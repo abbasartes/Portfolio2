@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    /* ══════════════════════════════════════════
+       ROOT — اللون الموحد: أزرق نيون #00C6FF
+    ══════════════════════════════════════════ */
+    :root {
+      --accent:   #00C6FF;
+      --accent2:  #0072FF;
+      --bg:       #04070F;
+      --bg2:      #080F1E;
+      --bg3:      #0C1526;
+      --border:   rgba(0,198,255,.15);
+      --text:     #E8F4FF;
+      --muted:    #5A7A9A;
+      --glow:     0 0 30px rgba(0,198,255,.35);
+      --glow-lg:  0 0 60px rgba(0,198,255,.5);
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Cairo',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    /* ══════ SCROLLBAR ══════ */
+    ::-webkit-scrollbar{width:5px}
+    ::-webkit-scrollbar-track{background:var(--bg)}
+    ::-webkit-scrollbar-thumb{background:var(--accent);border-radius:5px}
+
+    /* ══════ CURSOR GLOW (decorative) ══════ */
+    .blob{
+      position:fixed;width:500px;height:500px;border-radius:50%;
+      background:radial-gradient(circle,rgba(0,198,255,.07) 0%,transparent 70%);
+      pointer-events:none;transform:translate(-50%,-50%);
+      transition:left .5s,top .5s;z-index:0;
+    }
+
+    /* ══════════════════════
+       SIDEBAR NAV
+    ══════════════════════ */
+    .sidebar{
+      position:fixed;left:0;top:0;height:100vh;width:72px;
+      background:var(--bg2);
+      border-right:1px solid var(--border);
+      display:flex;flex-direction:column;align-items:center;
+      padding:25px 0;gap:8px;z-index:100;
+    }
+    .logo{
+      width:42px;height:42px;border-radius:12px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      display:flex;align-items:center;justify-content:center;
+      font-size:1.2rem;margin-bottom:20px;
+      box-shadow:var(--glow);
+    }
+    .nav-btn{
+      width:46px;height:46px;border-radius:14px;border:none;
+      background:transparent;color:var(--muted);
+      display:flex;align-items:center;justify-content:center;
+      font-size:1.1rem;cursor:pointer;transition:all .3s;
+      position:relative;
+    }
+    .nav-btn::after{
+      content:attr(data-tip);
+      position:absolute;left:calc(100% + 15px);
+      background:var(--bg3);border:1px solid var(--border);
+      color:var(--text);padding:5px 12px;border-radius:8px;
+      font-family:'Cairo',sans-serif;font-size:.8rem;
+      white-space:nowrap;opacity:0;pointer-events:none;
+      transition:opacity .2s;
+    }
+    .nav-btn:hover::after{opacity:1}
+    .nav-btn:hover,.nav-btn.active{
+      color:var(--accent);
+      background:rgba(0,198,255,.08);
+      box-shadow:inset 0 0 15px rgba(0,198,255,.1);
+    }
+    .nav-btn.active::before{
+      content:'';position:absolute;right:0;top:50%;transform:translateY(-50%);
+      width:3px;height:28px;background:var(--accent);border-radius:3px 0 0 3px;
+    }
+
+    /* ══════════════════════
+       WRAPPER
+    ══════════════════════ */
+    .wrapper{margin-right:0;margin-left:72px;min-height:100vh;position:relative;z-index:1}
+
+    /* ══════════════════════
+       HERO
+    ══════════════════════ */
+    .hero{
+      min-height:100vh;display:flex;align-items:center;
+      padding:60px 80px;position:relative;overflow:hidden;
+    }
+    .hero-grid{
+      display:grid;grid-template-columns:1fr 420px;
+      gap:60px;align-items:center;width:100%;max-width:1200px;margin:0 auto;
+    }
+    /* Lines background */
+    .hero::before{
+      content:'';position:absolute;inset:0;
+      background-image:
+        linear-gradient(rgba(0,198,255,.03) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(0,198,255,.03) 1px,transparent 1px);
+      background-size:50px 50px;
+    }
+    /* Glow orb */
+    .hero::after{
+      content:'';position:absolute;top:-200px;left:-200px;
+      width:600px;height:600px;border-radius:50%;
+      background:radial-gradient(circle,rgba(0,198,255,.08),transparent 70%);
+      pointer-events:none;
+    }
+    .hero-badge{
+      display:inline-flex;align-items:center;gap:8px;
+      background:rgba(0,198,255,.08);border:1px solid var(--border);
+      color:var(--accent);padding:7px 18px;border-radius:30px;
+      font-size:.85rem;font-weight:600;margin-bottom:25px;
+    }
+    .hero-badge span{
+      width:8px;height:8px;border-radius:50%;
+      background:var(--accent);animation:blink 1.5s infinite;
+    }
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+    .hero h1{
+      font-size:4rem;font-weight:900;line-height:1.1;
+      margin-bottom:20px;
+    }
+    .hero h1 .name{
+      display:block;
+      background:linear-gradient(90deg,var(--accent),var(--accent2));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    }
+    .hero p{color:var(--muted);font-size:1.1rem;line-height:1.8;max-width:480px;margin-bottom:35px}
+    .hero-btns{display:flex;gap:15px;flex-wrap:wrap}
+    .btn-primary{
+      padding:13px 32px;border-radius:14px;border:none;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#fff;font-family:'Cairo',sans-serif;font-weight:700;
+      font-size:1rem;cursor:pointer;transition:all .3s;
+      box-shadow:0 0 25px rgba(0,198,255,.35);
+    }
+    .btn-primary:hover{transform:translateY(-3px);box-shadow:var(--glow-lg)}
+    .btn-outline{
+      padding:13px 32px;border-radius:14px;
+      border:1px solid var(--border);background:transparent;
+      color:var(--text);font-family:'Cairo',sans-serif;
+      font-weight:600;font-size:1rem;cursor:pointer;transition:all .3s;
+    }
+    .btn-outline:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,198,255,.05)}
+
+    /* Avatar card */
+    .avatar-wrap{position:relative;display:flex;justify-content:center}
+    .avatar-card{
+      width:320px;height:380px;border-radius:28px;
+      background:var(--bg3);border:1px solid var(--border);
+      display:flex;flex-direction:column;align-items:center;
+      justify-content:center;gap:20px;position:relative;overflow:hidden;
+      box-shadow:var(--glow);
+    }
+    .avatar-card::before{
+      content:'';position:absolute;top:-40%;left:-40%;
+      width:180%;height:180%;border-radius:50%;
+      background:radial-gradient(circle,rgba(0,198,255,.05),transparent 60%);
+    }
+    .avatar-icon{
+      width:110px;height:110px;border-radius:50%;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      display:flex;align-items:center;justify-content:center;
+      font-size:3rem;position:relative;z-index:1;
+      box-shadow:var(--glow-lg);
+    }
+    .avatar-name{font-size:1.4rem;font-weight:800;position:relative;z-index:1}
+    .avatar-role{color:var(--muted);font-size:.9rem;position:relative;z-index:1}
+    .avatar-stats{
+      display:flex;gap:25px;position:relative;z-index:1;
+      border-top:1px solid var(--border);padding-top:20px;width:80%;justify-content:center;
+    }
+    .avatar-stat{text-align:center}
+    .avatar-stat .num{
+      font-size:1.5rem;font-weight:900;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    }
+    .avatar-stat .lbl{color:var(--muted);font-size:.7rem}
+
+    /* ══════════════════════
+       SECTION WRAPPER
+    ══════════════════════ */
+    section{padding:80px 80px;max-width:1272px;margin:0 auto}
+    .sec-header{margin-bottom:50px}
+    .sec-eyebrow{
+      color:var(--accent);font-size:.8rem;font-weight:700;
+      text-transform:uppercase;letter-spacing:3px;margin-bottom:10px;
+    }
+    .sec-title{font-size:2.5rem;font-weight:900}
+    .sec-title span{
+      background:linear-gradient(90deg,var(--accent),var(--accent2));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    }
+    .sec-line{
+      width:50px;height:3px;margin-top:14px;border-radius:3px;
+      background:linear-gradient(90deg,var(--accent),var(--accent2));
+    }
+
+    /* ══════════════════════
+       ADD FORM
+    ══════════════════════ */
+    #add-section{display:none}
+    .glass-card{
+      background:var(--bg2);border:1px solid var(--border);
+      border-radius:24px;padding:40px;
+    }
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+    .form-row.full{grid-template-columns:1fr}
+    .fgroup label{
+      display:block;color:var(--muted);font-size:.85rem;
+      font-weight:600;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px;
+    }
+    .fgroup input,.fgroup textarea,.fgroup select{
+      width:100%;background:var(--bg3);
+      border:1px solid var(--border);color:var(--text);
+      padding:13px 16px;border-radius:14px;
+      font-family:'Cairo',sans-serif;font-size:.95rem;
+      outline:none;transition:all .3s;
+    }
+    .fgroup input:focus,.fgroup textarea:focus,.fgroup select:focus{
+      border-color:var(--accent);
+      box-shadow:0 0 0 3px rgba(0,198,255,.12),var(--glow);
+    }
+    .fgroup textarea{resize:vertical;min-height:90px}
+    .fgroup select option{background:var(--bg3)}
+    .btn-submit{
+      width:100%;padding:15px;border-radius:16px;border:none;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#fff;font-family:'Cairo',sans-serif;font-size:1.05rem;
+      font-weight:700;cursor:pointer;transition:all .3s;
+      display:flex;align-items:center;justify-content:center;gap:10px;
+      box-shadow:0 0 25px rgba(0,198,255,.3);
+    }
+    .btn-submit:hover{transform:translateY(-2px);box-shadow:var(--glow-lg)}
+
+    /* ══════════════════════
+       FILTER
+    ══════════════════════ */
+    .filter-wrap{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:40px}
+    .fpill{
+      padding:8px 22px;border-radius:30px;
+      border:1px solid var(--border);background:transparent;
+      color:var(--muted);font-family:'Cairo',sans-serif;
+      font-size:.88rem;cursor:pointer;transition:all .3s;
+    }
+    .fpill.active,.fpill:hover{
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#fff;border-color:transparent;
+      box-shadow:0 0 15px rgba(0,198,255,.3);
+    }
+
+    /* ══════════════════════
+       PROJECTS GRID
+    ══════════════════════ */
+    .projects-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(330px,1fr));
+      gap:28px;
+    }
+    .pcard{
+      background:var(--bg2);border:1px solid var(--border);
+      border-radius:22px;overflow:hidden;
+      transition:all .35s;position:relative;
+    }
+    .pcard::after{
+      content:'';position:absolute;inset:0;border-radius:22px;
+      background:linear-gradient(135deg,rgba(0,198,255,.03),transparent);
+      opacity:0;transition:opacity .3s;pointer-events:none;
+    }
+    .pcard:hover{
+      transform:translateY(-8px);
+      border-color:rgba(0,198,255,.4);
+      box-shadow:0 20px 60px rgba(0,198,255,.2),0 0 0 1px rgba(0,198,255,.1);
+    }
+    .pcard:hover::after{opacity:1}
+    .vid-box{position:relative;padding-top:56.25%;background:#000;cursor:pointer}
+    .vid-box iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+    .vid-thumb{
+      position:absolute;inset:0;display:flex;
+      align-items:center;justify-content:center;
+      background-size:cover;background-position:center;
+    }
+    .vid-thumb::before{
+      content:'';position:absolute;inset:0;
+      background:linear-gradient(135deg,rgba(0,114,255,.3),rgba(0,198,255,.2));
+    }
+    .play-circle{
+      width:70px;height:70px;border-radius:50%;
+      background:rgba(255,255,255,.95);
+      display:flex;align-items:center;justify-content:center;
+      font-size:1.5rem;color:var(--accent2);
+      transition:all .3s;position:relative;z-index:1;
+      box-shadow:0 0 30px rgba(0,198,255,.5);
+    }
+    .vid-thumb:hover .play-circle{transform:scale(1.12);box-shadow:0 0 50px rgba(0,198,255,.8)}
+    .cat-pill{
+      position:absolute;top:14px;right:14px;z-index:2;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#fff;padding:4px 14px;border-radius:20px;
+      font-size:.72rem;font-weight:700;
+    }
+    .pbody{padding:22px}
+    .ptitle{font-size:1.1rem;font-weight:800;margin-bottom:8px}
+    .pdesc{color:var(--muted);font-size:.88rem;line-height:1.65;margin-bottom:16px}
+    .pfoot{display:flex;align-items:center;justify-content:space-between}
+    .pdate{color:var(--muted);font-size:.78rem;display:flex;align-items:center;gap:5px}
+    .picons{display:flex;gap:8px}
+    .icon-btn{
+      width:34px;height:34px;border-radius:10px;
+      border:1px solid var(--border);background:transparent;
+      color:var(--muted);display:flex;align-items:center;
+      justify-content:center;cursor:pointer;transition:all .3s;font-size:.85rem;
+    }
+    .icon-btn.yt:hover{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 0 15px rgba(0,198,255,.4)}
+    .icon-btn.del:hover{background:#FF4458;color:#fff;border-color:#FF4458}
+
+    /* ══════════════════════
+       ABOUT
+    ══════════════════════ */
+    #about-section{display:none}
+    .about-layout{display:grid;grid-template-columns:280px 1fr;gap:40px;align-items:start}
+    .about-left{
+      background:var(--bg2);border:1px solid var(--border);
+      border-radius:22px;padding:35px;text-align:center;
+      position:sticky;top:30px;
+    }
+    .about-avatar{
+      width:100px;height:100px;border-radius:50%;margin:0 auto 15px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      display:flex;align-items:center;justify-content:center;
+      font-size:2.5rem;box-shadow:var(--glow-lg);
+    }
+    .about-name{font-size:1.3rem;font-weight:800;margin-bottom:5px}
+    .about-role{color:var(--muted);font-size:.88rem;margin-bottom:20px}
+    .social-row{display:flex;gap:10px;justify-content:center}
+    .soc-btn{
+      width:38px;height:38px;border-radius:11px;
+      border:1px solid var(--border);background:var(--bg3);
+      color:var(--muted);display:flex;align-items:center;
+      justify-content:center;text-decoration:none;transition:all .3s;
+    }
+    .soc-btn:hover{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border-color:transparent;box-shadow:0 0 15px rgba(0,198,255,.4)}
+    .about-bio{
+      margin-top:20px;padding-top:20px;border-top:1px solid var(--border);
+      color:var(--muted);font-size:.88rem;line-height:1.7;text-align:right;
+    }
+    .about-right .glass-card{margin-bottom:25px}
+    .about-right .glass-card h4{
+      font-size:1rem;margin-bottom:20px;display:flex;align-items:center;gap:8px;
+    }
+    .about-right .glass-card h4 i{color:var(--accent)}
+    .skills-grid{display:flex;flex-wrap:wrap;gap:10px}
+    .skill-pill{
+      padding:7px 18px;border-radius:20px;
+      background:rgba(0,198,255,.08);border:1px solid rgba(0,198,255,.2);
+      font-size:.85rem;display:flex;align-items:center;gap:7px;
+      color:var(--accent);
+    }
+    .skill-pill .rm{cursor:pointer;color:var(--muted);font-size:.7rem;transition:color .2s}
+    .skill-pill .rm:hover{color:#ff4458}
+
+    /* ══════════════════════
+       EMPTY STATE
+    ══════════════════════ */
+    .empty{
+      grid-column:1/-1;text-align:center;padding:70px 20px;
+    }
+    .empty-icon{
+      width:80px;height:80px;border-radius:24px;
+      background:rgba(0,198,255,.05);border:1px solid var(--border);
+      display:flex;align-items:center;justify-content:center;
+      font-size:2rem;color:var(--muted);margin:0 auto 20px;
+    }
+    .empty p{color:var(--muted);font-size:1rem}
+    .empty p strong{color:var(--accent)}
+
+    /* ══════════════════════
+       TOAST
+    ══════════════════════ */
+    .toast{
+      position:fixed;bottom:30px;right:30px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#fff;padding:13px 25px;border-radius:14px;
+      font-size:.9rem;font-weight:600;z-index:9999;
+      transform:translateY(80px);opacity:0;
+      transition:all .4s;box-shadow:var(--glow);
+      display:flex;align-items:center;gap:10px;
+    }
+    .toast.show{transform:translateY(0);opacity:1}
+
+    /* ══════════════════════
+       RESPONSIVE
+    ══════════════════════ */
+    @media(max-width:900px){
+      .sidebar{display:none}
+      .wrapper{margin-left:0}
+      .hero{padding:40px 25px}
+      .hero-grid{grid-template-columns:1fr;gap:40px}
+      .hero h1{font-size:2.5rem}
+      .avatar-wrap{display:none}
+      section{padding:50px 25px}
+      .about-layout{grid-template-columns:1fr}
+      .about-left{position:static}
+      .form-row{grid-template-columns:1fr}
+    }
+
+    /* ══════════════════════
+       TOP NAV (MOBILE)
+    ══════════════════════ */
+    .topbar{
+      display:none;position:fixed;top:0;left:0;right:0;
+      background:rgba(4,7,15,.9);backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--border);padding:12px 20px;
+      z-index:100;justify-content:space-between;align-items:center;
+    }
+    .topbar-logo{
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      font-weight:900;font-size:1.1rem;
+    }
+    .topbar-btns{display:flex;gap:5px}
+    .topbar-btn{
+      padding:6px 14px;border-radius:20px;border:1px solid var(--border);
+      background:transparent;color:var(--muted);
+      font-family:'Cairo',sans-serif;font-size:.8rem;cursor:pointer;transition:all .3s;
+    }
+    .topbar-btn.active,.topbar-btn:hover{
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#fff;border-color:transparent;
+    }
+    @media(max-width:900px){
+      .topbar{display:flex}
+      .hero{padding-top:80px}
+    }
+  </style>
+</head>
+<body>
+
+<div class="blob" id="blob"></div>
+
+<!-- MOBILE TOPBAR -->
+<div class="topbar">
+  <div class="topbar-logo">Portfolio</div>
+  <div class="topbar-btns">
+    <button class="topbar-btn active" onclick="show('home',this)">الرئيسية</button>
+    <button class="topbar-btn" onclick="show('work',this)">أعمالي</button>
+    <button class="topbar-btn" onclick="show('add',this)">إضافة</button>
+    <button class="topbar-btn" onclick="show('about',this)">عني</button>
+  </div>
+</div>
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="logo">⚡</div>
+  <button class="nav-btn active" data-tip="الرئيسية" onclick="show('home',this)"><i class="fas fa-house"></i></button>
+  <button class="nav-btn" data-tip="أعمالي"  onclick="show('work',this)"><i class="fas fa-film"></i></button>
+  <button class="nav-btn" data-tip="إضافة عمل" onclick="show('add',this)"><i class="fas fa-plus"></i></button>
+  <button class="nav-btn" data-tip="عني"    onclick="show('about',this)"><i class="fas fa-user"></i></button>
+</nav>
+
+<div class="wrapper">
+
+  <!-- ══════ HERO ══════ -->
+  <div id="home-section">
+    <div class="hero">
+      <div class="hero-grid">
+        <!-- Left -->
+        <div>
+          <div class="hero-badge"><span></span> متاح للعمل الآن</div>
+          <h1>
+            مرحباً، أنا
+            <span class="name" id="heroName">اسمك هنا</span>
+          </h1>
+          <p id="heroBio">مصمم مبدع وشغوف بالتفاصيل · أعمل على تحويل الأفكار إلى تجارب بصرية استثنائية تُبهر الجمهور وتحقق الأهداف.</p>
+          <div class="hero-btns">
+            <button class="btn-primary" onclick="show('work', document.querySelectorAll('.nav-btn')[1])">
+              <i class="fas fa-eye"></i> شاهد أعمالي
+            </button>
+            <button class="btn-outline" onclick="show('add', document.querySelectorAll('.nav-btn')[2])">
+              <i class="fas fa-plus"></i> أضف عملاً
+            </button>
+          </div>
+        </div>
+        <!-- Right -->
+        <div class="avatar-wrap">
+          <div class="avatar-card">
+            <div class="avatar-icon" id="heroEmoji">🎨</div>
+            <div class="avatar-name" id="heroNameCard">اسمك هنا</div>
+            <div class="avatar-role" id="heroRoleCard">مصمم | مطور</div>
+            <div class="avatar-stats">
+              <div class="avatar-stat">
+                <div class="num" id="statP">0</div>
+                <div class="lbl">مشروع</div>
+              </div>
+              <div class="avatar-stat">
+                <div class="num" id="statC">0</div>
+                <div class="lbl">تصنيف</div>
+              </div>
+              <div class="avatar-stat">
+                <div class="num" id="statY">-</div>
+                <div class="lbl">منذ</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════ WORK ══════ -->
+  <section id="work-section" style="display:none">
+    <div class="sec-header">
+      <div class="sec-eyebrow">معرض الأعمال</div>
+      <h2 class="sec-title">أحدث <span>مشاريعي</span></h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="filter-wrap" id="filterWrap">
+      <button class="fpill active" onclick="filterBy('all',this)">الكل</button>
+    </div>
+    <div class="projects-grid" id="grid"></div>
+  </section>
+
+  <!-- ══════ ADD ══════ -->
+  <section id="add-section" style="display:none">
+    <div class="sec-header">
+      <div class="sec-eyebrow">نشر عمل جديد</div>
+      <h2 class="sec-title">أضف <span>فيديو يوتيوب</span></h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="glass-card">
+      <div class="form-row full">
+        <div class="fgroup">
+          <label><i class="fab fa-youtube"></i> رابط الفيديو من يوتيوب</label>
+          <input id="inUrl" type="url" placeholder="https://www.youtube.com/watch?v=...  أو  https://youtu.be/..."/>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="fgroup">
+          <label><i class="fas fa-heading"></i> عنوان العمل</label>
+          <input id="inTitle" type="text" placeholder="مثال: هوية بصرية كاملة"/>
+        </div>
+        <div class="fgroup">
+          <label><i class="fas fa-tags"></i> التصنيف</label>
+          <select id="inCat">
+            <option value="تصميم">🎨 تصميم</option>
+            <option value="مونتاج">🎬 مونتاج</option>
+            <option value="موشن">✨ موشن جرافيك</option>
+            <option value="تصوير">📸 تصوير</option>
+            <option value="برمجة">💻 برمجة</option>
+            <option value="إعلان">📢 إعلان</option>
+            <option value="أخرى">📁 أخرى</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row full" style="margin-bottom:25px">
+        <div class="fgroup">
+          <label><i class="fas fa-align-right"></i> وصف العمل (اختياري)</label>
+          <textarea id="inDesc" placeholder="اكتب نبذة مختصرة عن هذا العمل..."></textarea>
+        </div>
+      </div>
+      <button class="btn-submit" onclick="addProject()">
+        <i class="fas fa-plus-circle"></i> نشر العمل
+      </button>
+    </div>
+  </section>
+
+  <!-- ══════ ABOUT ══════ -->
+  <section id="about-section" style="display:none">
+    <div class="sec-header">
+      <div class="sec-eyebrow">التعريف بي</div>
+      <h2 class="sec-title">من <span>أنا؟</span></h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="about-layout">
+      <!-- Left card -->
+      <div class="about-left">
+        <div class="about-avatar" id="previewEmoji">🎨</div>
+        <div class="about-name" id="previewName">اسمك هنا</div>
+        <div class="about-role" id="previewRole">التخصص</div>
+        <div class="social-row">
+          <a class="soc-btn" id="sYT"  href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+          <a class="soc-btn" id="sIG"  href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a class="soc-btn" id="sTW"  href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a class="soc-btn" id="sLI"  href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <div class="about-bio" id="previewBio">ستظهر نبذتك هنا بعد الحفظ.</div>
+      </div>
+      <!-- Right form -->
+      <div class="about-right">
+        <div class="glass-card">
+          <h4><i class="fas fa-id-card"></i> المعلومات الأساسية</h4>
+          <div class="form-row">
+            <div class="fgroup">
+              <label>الاسم</label>
+              <input id="aName" type="text" placeholder="اسمك الكامل" oninput="livePreview()"/>
+            </div>
+            <div class="fgroup">
+              <label>التخصص</label>
+              <input id="aRole" type="text" placeholder="مصمم جرافيك · مطور..." oninput="livePreview()"/>
+            </div>
+          </div>
+          <div class="form-row full" style="margin-bottom:0">
+            <div class="fgroup">
+              <label>نبذة عنك</label>
+              <textarea id="aBio" placeholder="اكتب نبذة مختصرة..." oninput="livePreview()"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="glass-card">
+          <h4><i class="fas fa-share-nodes"></i> روابط التواصل</h4>
+          <div class="form-row">
+            <div class="fgroup">
+              <label><i class="fab fa-youtube"></i> يوتيوب</label>
+              <input id="aYT" type="url" placeholder="https://youtube.com/@..." oninput="liveLinks()"/>
+            </div>
+            <div class="fgroup">
+              <label><i class="fab fa-instagram"></i> إنستغرام</label>
+              <input id="aIG" type="url" placeholder="https://instagram.com/..." oninput="liveLinks()"/>
+            </div>
+            <div class="fgroup">
+              <label><i class="fab fa-twitter"></i> تويتر</label>
+              <input id="aTW" type="url" placeholder="https://twitter.com/..." oninput="liveLinks()"/>
+            </div>
+            <div class="fgroup">
+              <label><i class="fab fa-linkedin"></i> لينكد إن</label>
+              <input id="aLI" type="url" placeholder="https://linkedin.com/in/..." oninput="liveLinks()"/>
+            </div>
+          </div>
+        </div>
+        <div class="glass-card">
+          <h4><i class="fas fa-star"></i> المهارات</h4>
+          <div class="fgroup" style="margin-bottom:15px">
+            <label>أضف مهارة واضغط Enter</label>
+            <input id="skIn" type="text" placeholder="مثال: Adobe Premiere" onkeydown="addSkill(event)"/>
+          </div>
+          <div class="skills-grid" id="skillsGrid"></div>
+        </div>
+        <div class="glass-card">
+          <h4><i class="fas fa-calendar"></i> سنة البداية</h4>
+          <div class="fgroup">
+            <label>منذ متى تعمل في هذا المجال؟</label>
+            <input id="aYear" type="number" placeholder="2020" min="1990" max="2030"/>
+          </div>
+        </div>
+        <button class="btn-submit" onclick="saveAbout()">
+          <i class="fas fa-save"></i> حفظ الملف الشخصي
+        </button>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /wrapper -->
+
+<!-- TOAST -->
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i> <span id="toastMsg">تم!</span></div>
+
+<script>
+// ═══════════════════ DATA ═══════════════════
+let projects = JSON.parse(localStorage.getItem('pf_projects') || '[]');
+let about    = JSON.parse(localStorage.getItem('pf_about')    || '{}');
+let skills   = JSON.parse(localStorage.getItem('pf_skills')   || '[]');
+let activeF  = 'all';
+
+// ═══════════════════ INIT ═══════════════════
+window.onload = () => {
+  applyAbout();
+  renderGrid();
+  updateStats();
+};
+
+// Cursor blob
+document.addEventListener('mousemove', e => {
+  const b = document.getElementById('blob');
+  b.style.left = e.clientX + 'px';
+  b.style.top  = e.clientY + 'px';
+});
+
+// ═══════════════════ SECTIONS ═══════════════════
+function show(name, btn) {
+  ['home','work','add','about'].forEach(s => {
+    document.getElementById(s+'-section').style.display = 'none';
+  });
+  document.getElementById(name+'-section').style.display = (name==='home') ? 'block' : 'block';
+  // Nav highlights
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.topbar-btn').forEach(b => b.classList.remove('active'));
+  if(btn){ btn.classList.add('active'); }
+  if(name==='about') loadAboutForm();
+}
+
+// ═══════════════════ YOUTUBE ═══════════════════
+function getYTId(url){
+  const p=[/youtube\.com\/watch\?v=([^&]+)/,/youtu\.be\/([^?&]+)/,/youtube\.com\/embed\/([^?&]+)/,/youtube\.com\/shorts\/([^?&]+)/];
+  for(const r of p){ const m=url.match(r); if(m) return m[1]; }
+  return null;
+}
+
+// ═══════════════════ ADD ═══════════════════
+function addProject(){
+  const url  = document.getElementById('inUrl').value.trim();
+  const ttl  = document.getElementById('inTitle').value.trim();
+  const cat  = document.getElementById('inCat').value;
+  const desc = document.getElementById('inDesc').value.trim();
+  if(!url)   return toast('⚠️ أدخل رابط الفيديو',true);
+  if(!ttl)   return toast('⚠️ أدخل عنوان العمل',true);
+  const id = getYTId(url);
+  if(!id)    return toast('⚠️ الرابط غير صحيح، تأكد من رابط يوتيوب!',true);
+  projects.unshift({id:Date.now(),url,ttl,cat,desc,ytId:id,date:new Date().toLocaleDateString('ar-SA')});
+  save();
+  renderGrid();
+  updateStats();
+  document.getElementById('inUrl').value='';
+  document.getElementById('inTitle').value='';
+  document.getElementById('inDesc').value='';
+  toast('✅ تمت إضافة العمل بنجاح!');
+  show('work', document.querySelectorAll('.nav-btn')[1]);
+}
+
+// ═══════════════════ RENDER ═══════════════════
+function renderGrid(f=activeF){
+  activeF=f;
+  const g=document.getElementById('grid');
+  const list=f==='all'?projects:projects.filter(p=>p.cat===f);
+  if(!list.length){
+    g.innerHTML=`<div class="empty">
+      <div class="empty-icon"><i class="fas fa-photo-film"></i></div>
+      <p>${f!=='all'?'لا توجد أعمال في هذا التصنيف. ':'لا توجد أعمال بعد. '}
+      أضف أول عمل من تبويب <strong>+ إضافة</strong></p></div>`;
+    return;
+  }
+  g.innerHTML=list.map(p=>`
+    <div class="pcard">
+      <div class="vid-box">
+        <div class="vid-thumb"
+             style="background-image:url('https://img.youtube.com/vi/${p.ytId}/hqdefault.jpg')"
+             onclick="play(this,'${p.ytId}')">
+          <div class="play-circle"><i class="fas fa-play"></i></div>
+        </div>
+        <div class="cat-pill">${p.cat}</div>
+      </div>
+      <div class="pbody">
+        <div class="ptitle">${p.ttl}</div>
+        ${p.desc?`<div class="pdesc">${p.desc}</div>`:''}
+        <div class="pfoot">
+          <div class="pdate"><i class="far fa-clock"></i>${p.date}</div>
+          <div class="picons">
+            <button class="icon-btn yt" title="فتح في يوتيوب" onclick="window.open('${p.url}','_blank')">
+              <i class="fab fa-youtube"></i>
+            </button>
+            <button class="icon-btn del" title="حذف" onclick="del(${p.id})">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  updateFilterBar();
+}
+
+function play(thumb,id){
+  const w=thumb.parentElement;
+  const f=document.createElement('iframe');
+  f.src=`https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+  f.allow='autoplay;encrypted-media';f.allowFullscreen=true;
+  w.innerHTML='';w.appendChild(f);
+}
+
+// ═══════════════════ FILTER ═══════════════════
+function updateFilterBar(){
+  const bar=document.getElementById('filterWrap');
+  const cats=[...new Set(projects.map(p=>p.cat))];
+  bar.innerHTML=`<button class="fpill ${activeF==='all'?'active':''}" onclick="filterBy('all',this)">الكل</button>`;
+  cats.forEach(c=>{
+    bar.innerHTML+=`<button class="fpill ${activeF===c?'active':''}" onclick="filterBy('${c}',this)">${c}</button>`;
+  });
+}
+
+function filterBy(c,btn){
+  document.querySelectorAll('.fpill').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGrid(c);
+}
+
+// ═══════════════════ DELETE ═══════════════════
+function del(id){
+  if(!confirm('هل تريد حذف هذا العمل؟')) return;
+  projects=projects.filter(p=>p.id!==id);
+  save();renderGrid();updateStats();
+  toast('🗑️ تم حذف العمل');
+}
+
+// ═══════════════════ STATS ═══════════════════
+function updateStats(){
+  document.getElementById('statP').textContent=projects.length;
+  document.getElementById('statC').textContent=new Set(projects.map(p=>p.cat)).size;
+  if(about.year) document.getElementById('statY').textContent=about.year;
+}
+
+// ═══════════════════ ABOUT ═══════════════════
+function applyAbout(){
+  if(!about.name) return;
+  document.getElementById('heroName').textContent   = about.name  ||'اسمك هنا';
+  document.getElementById('heroNameCard').textContent= about.name  ||'اسمك هنا';
+  document.getElementById('heroRoleCard').textContent= about.role  ||'مصمم | مطور';
+  document.getElementById('heroBio').textContent    = about.bio   ||'';
+}
+
+function loadAboutForm(){
+  document.getElementById('aName').value=about.name||'';
+  document.getElementById('aRole').value=about.role||'';
+  document.getElementById('aBio').value =about.bio ||'';
+  document.getElementById('aYT').value  =about.yt  ||'';
+  document.getElementById('aIG').value  =about.ig  ||'';
+  document.getElementById('aTW').value  =about.tw  ||'';
+  document.getElementById('aLI').value  =about.li  ||'';
+  document.getElementById('aYear').value=about.year||'';
+  livePreview();liveLinks();renderSkills();
+}
+
+function livePreview(){
+  const n=document.getElementById('aName').value||'اسمك هنا';
+  const r=document.getElementById('aRole').value||'التخصص';
+  const b=document.getElementById('aBio').value ||'ستظهر نبذتك هنا بعد الحفظ.';
+  document.getElementById('previewName').textContent=n;
+  document.getElementById('previewRole').textContent=r;
+  document.getElementById('previewBio').textContent=b;
+}
+
+function liveLinks(){
+  const yt=document.getElementById('aYT').value;
+  const ig=document.getElementById('aIG').value;
+  const tw=document.getElementById('aTW').value;
+  const li=document.getElementById('aLI').value;
+  if(yt) document.getElementById('sYT').href=yt;
+  if(ig) document.getElementById('sIG').href=ig;
+  if(tw) document.getElementById('sTW').href=tw;
+  if(li) document.getElementById('sLI').href=li;
+}
+
+function saveAbout(){
+  about={
+    name:document.getElementById('aName').value.trim(),
+    role:document.getElementById('aRole').value.trim(),
+    bio :document.getElementById('aBio').value.trim(),
+    yt  :document.getElementById('aYT').value.trim(),
+    ig  :document.getElementById('aIG').value.trim(),
+    tw  :document.getElementById('aTW').value.trim(),
+    li  :document.getElementById('aLI').value.trim(),
+    year:document.getElementById('aYear').value.trim(),
+  };
+  localStorage.setItem('pf_about',JSON.stringify(about));
+  localStorage.setItem('pf_skills',JSON.stringify(skills));
+  applyAbout();updateStats();
+  toast('✅ تم حفظ ملفك الشخصي!');
+}
+
+// ═══════════════════ SKILLS ═══════════════════
+function addSkill(e){
+  if(e.key!=='Enter') return;
+  const v=document.getElementById('skIn').value.trim();
+  if(!v||skills.includes(v)) return;
+  skills.push(v);
+  document.getElementById('skIn').value='';
+  renderSkills();
+}
+function removeSkill(s){
+  skills=skills.filter(x=>x!==s);renderSkills();
+}
+function renderSkills(){
+  document.getElementById('skillsGrid').innerHTML=skills.map(s=>
+    `<div class="skill-pill">${s}<span class="rm" onclick="removeSkill('${s}')">✕</span></div>`
+  ).join('');
+}
+
+// ═══════════════════ SAVE ═══════════════════
+function save(){
+  localStorage.setItem('pf_projects',JSON.stringify(projects));
+}
+
+// ═══════════════════ TOAST ═══════════════════
+function toast(msg,err=false){
+  const t=document.getElementById('toast');
+  const m=document.getElementById('toastMsg');
+  m.textContent=msg;
+  t.style.background=err
+    ?'linear-gradient(135deg,#FF4458,#FF6B6B)'
+    :'linear-gradient(135deg,#00C6FF,#0072FF)';
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+</script>
+</body>
+</html>
