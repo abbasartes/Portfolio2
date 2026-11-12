@@ -1,0 +1,109 @@
+/* ============================================================
+   Minimalist White Theme Stylesheet
+   Focus: Pure White (#FFFFFF), subtle borders, crisp contrast
+   ============================================================ */
+
+/* Base & Typography */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-subtle: #f4f4f5;
+  --border-light: #e4e4e7;
+  --border-hover: #a1a1aa;
+  --text-main: #09090b;
+  --text-muted: #71717a;
+}
+
+html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Custom Minimalist Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 9999px;
+  border: 2px solid #ffffff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1aa;
+}
+
+/* Subtle Cards & Elevation */
+.project-card {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Filter Buttons Transition */
+.filter-btn {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Modal Animations */
+#project-modal.active {
+  display: flex !important;
+}
+
+#project-modal.active .modal-content {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Custom focus states */
+input:focus, textarea:focus, select:focus, button:focus-visible {
+  outline: none;
+}
+
+/* Direction-specific arrow rotations */
+[dir="rtl"] .lang-arrow {
+  transform: rotate(0deg);
+}
+
+[dir="ltr"] .lang-arrow {
+  transform: rotate(180deg);
+}
+
+/* Subtle selection styles */
+::selection {
+  background: #18181b;
+  color: #ffffff;
+}
+
+/* Shimmer pulse effect for badges */
+@keyframes subtle-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.animate-subtle-pulse {
+  animation: subtle-pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
