@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>لوحة التحكم</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root{
+      --accent:#00C6FF;--accent2:#0072FF;
+      --bg:#04070F;--bg2:#080F1E;--bg3:#0C1526;
+      --border:rgba(0,198,255,.15);--text:#E8F4FF;--muted:#5A7A9A;
+      --glow:0 0 30px rgba(0,198,255,.35);
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+    ::-webkit-scrollbar{width:5px}
+    ::-webkit-scrollbar-track{background:var(--bg)}
+    ::-webkit-scrollbar-thumb{background:var(--accent);border-radius:5px}
+
+    /* ══ LOGIN SCREEN ══ */
+    .login-screen{
+      position:fixed;inset:0;background:var(--bg);
+      display:flex;align-items:center;justify-content:center;z-index:999;
+    }
+    .login-box{
+      background:var(--bg2);border:1px solid var(--border);border-radius:28px;
+      padding:50px 40px;width:380px;text-align:center;
+      box-shadow:var(--glow);
+    }
+    .login-icon{
+      width:80px;height:80px;border-radius:24px;margin:0 auto 20px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      display:flex;align-items:center;justify-content:center;font-size:2.2rem;
+      box-shadow:var(--glow);
+    }
+    .login-box h2{font-size:1.5rem;margin-bottom:5px}
+    .login-box p{color:var(--muted);font-size:.88rem;margin-bottom:30px}
+    .login-box input{
+      width:100%;background:var(--bg3);border:1px solid var(--border);
+      color:var(--text);padding:13px 16px;border-radius:14px;
+      font-family:'Cairo',sans-serif;font-size:1rem;outline:none;
+      text-align:center;letter-spacing:3px;margin-bottom:15px;transition:all .3s;
+    }
+    .login-box input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,198,255,.12)}
+    .btn-login{
+      width:100%;padding:13px;border-radius:14px;border:none;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#fff;font-family:'Cairo',sans-serif;font-size:1rem;font-weight:700;
+      cursor:pointer;transition:all .3s;box-shadow:0 0 25px rgba(0,198,255,.3);
+    }
+    .btn-login:hover{transform:translateY(-2px);box-shadow:var(--glow)}
+    .login-err{color:#FF4458;font-size:.85rem;margin-top:10px;display:none}
+
+    /* ══ ADMIN LAYOUT ══ */
+    .admin-wrap{display:none;min-height:100vh}
+
+    /* ══ TOP BAR ══ */
+    .topbar{
+      background:var(--bg2);border-bottom:1px solid var(--border);
+      padding:16px 35px;display:flex;align-items:center;justify-content:space-between;
+      position:sticky;top:0;z-index:100;
+    }
+    .topbar-title{
+      font-size:1.1rem;font-weight:800;
+      display:flex;align-items:center;gap:10px;
+    }
+    .topbar-title i{color:var(--accent)}
+    .topbar-right{display:flex;align-items:center;gap:12px}
+    .btn-view{
+      padding:8px 20px;border-radius:30px;
+      border:1px solid var(--border);background:transparent;
+      color:var(--muted);font-family:'Cairo',sans-serif;font-size:.85rem;
+      cursor:pointer;transition:all .3s;text-decoration:none;display:inline-flex;
+      align-items:center;gap:7px;
+    }
+    .btn-view:hover{border-color:var(--accent);color:var(--accent)}
+    .btn-logout{
+      padding:8px 20px;border-radius:30px;border:none;
+      background:rgba(255,68,88,.1);border:1px solid rgba(255,68,88,.2);
+      color:#FF4458;font-family:'Cairo',sans-serif;font-size:.85rem;cursor:pointer;transition:all .3s;
+    }
+    .btn-logout:hover{background:#FF4458;color:#fff}
+
+    /* ══ MAIN ══ */
+    .admin-main{padding:40px 35px;max-width:1300px;margin:0 auto}
+
+    /* ══ STATS ══ */
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:40px}
+    .stat{background:var(--bg2);border:1px solid var(--border);border-radius:18px;
+      padding:25px;display:flex;align-items:center;gap:18px}
+    .stat-icon{width:52px;height:52px;border-radius:16px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      display:flex;align-items:center;justify-content:center;font-size:1.3rem;
+      box-shadow:0 0 15px rgba(0,198,255,.3);}
+    .stat-num{font-size:2rem;font-weight:900;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .stat-lbl{color:var(--muted);font-size:.82rem}
+
+    /* ══ PANELS ══ */
+    .panels{display:grid;grid-template-columns:420px 1fr;gap:30px;align-items:start}
+
+    /* ══ GLASS ══ */
+    .glass{background:var(--bg2);border:1px solid var(--border);border-radius:22px;padding:30px;margin-bottom:25px}
+    .glass h3{font-size:1rem;margin-bottom:22px;display:flex;align-items:center;gap:8px}
+    .glass h3 i{color:var(--accent)}
+
+    /* ══ FORM ══ */
+    .fgroup{margin-bottom:16px}
+    .fgroup label{display:block;color:var(--muted);font-size:.82rem;
+      font-weight:600;margin-bottom:7px;text-transform:uppercase;letter-spacing:.5px}
+    .fgroup input,.fgroup textarea,.fgroup select{
+      width:100%;background:var(--bg3);border:1px solid var(--border);
+      color:var(--text);padding:12px 15px;border-radius:12px;
+      font-family:'Cairo',sans-serif;font-size:.9rem;outline:none;transition:all .3s;
+    }
+    .fgroup input:focus,.fgroup textarea:focus,.fgroup select:focus{
+      border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,198,255,.12)}
+    .fgroup textarea{resize:vertical;min-height:80px}
+    .fgroup select option{background:var(--bg3)}
+    .btn-add{
+      width:100%;padding:13px;border-radius:13px;border:none;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:.95rem;
+      cursor:pointer;transition:all .3s;display:flex;align-items:center;
+      justify-content:center;gap:8px;box-shadow:0 0 20px rgba(0,198,255,.25);
+    }
+    .btn-add:hover{transform:translateY(-2px);box-shadow:var(--glow)}
+    .btn-save{
+      width:100%;padding:13px;border-radius:13px;border:none;
+      background:rgba(0,198,255,.1);border:1px solid rgba(0,198,255,.2);
+      color:var(--accent);font-family:'Cairo',sans-serif;font-weight:700;font-size:.95rem;
+      cursor:pointer;transition:all .3s;display:flex;align-items:center;
+      justify-content:center;gap:8px;
+    }
+    .btn-save:hover{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border-color:transparent}
+
+    /* ══ SKILLS ══ */
+    .skills-wrap{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .sk-pill{padding:5px 14px;border-radius:20px;background:rgba(0,198,255,.08);
+      border:1px solid rgba(0,198,255,.2);font-size:.82rem;color:var(--accent);
+      display:flex;align-items:center;gap:6px}
+    .sk-pill .rm{cursor:pointer;color:var(--muted);transition:color .2s}
+    .sk-pill .rm:hover{color:#FF4458}
+
+    /* ══ WORKS LIST ══ */
+    .works-list{display:flex;flex-direction:column;gap:14px}
+    .work-item{background:var(--bg2);border:1px solid var(--border);border-radius:16px;
+      display:flex;align-items:center;gap:15px;padding:14px;transition:all .3s}
+    .work-item:hover{border-color:rgba(0,198,255,.3)}
+    .work-thumb{width:90px;height:60px;border-radius:10px;
+      object-fit:cover;background:#000;flex-shrink:0;position:relative;overflow:hidden}
+    .work-thumb img{width:100%;height:100%;object-fit:cover}
+    .work-info{flex:1;min-width:0}
+    .work-title{font-weight:700;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .work-cat{color:var(--accent);font-size:.75rem;margin-top:3px}
+    .work-date{color:var(--muted);font-size:.72rem;margin-top:3px}
+    .work-actions{display:flex;gap:7px;flex-shrink:0}
+    .wi-btn{width:32px;height:32px;border-radius:9px;border:1px solid var(--border);
+      background:transparent;color:var(--muted);display:flex;align-items:center;
+      justify-content:center;cursor:pointer;transition:all .3s;font-size:.82rem}
+    .wi-btn.del:hover{background:#FF4458;color:#fff;border-color:#FF4458}
+    .wi-btn.yt:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+    .no-works{text-align:center;padding:40px;color:var(--muted);font-size:.9rem}
+
+    /* ══ TOAST ══ */
+    .toast{position:fixed;bottom:25px;right:25px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#fff;padding:12px 22px;border-radius:12px;font-size:.88rem;font-weight:600;
+      z-index:9999;transform:translateY(70px);opacity:0;transition:all .4s;
+      display:flex;align-items:center;gap:8px;box-shadow:var(--glow)}
+    .toast.show{transform:translateY(0);opacity:1}
+
+    /* ══ TABS ══ */
+    .tab-btns{display:flex;gap:8px;margin-bottom:20px}
+    .tab-btn{padding:8px 20px;border-radius:20px;border:1px solid var(--border);
+      background:transparent;color:var(--muted);font-family:'Cairo',sans-serif;
+      font-size:.85rem;cursor:pointer;transition:all .3s}
+    .tab-btn.active,.tab-btn:hover{
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#fff;border-color:transparent}
+
+    @media(max-width:900px){
+      .panels{grid-template-columns:1fr}
+      .stats{grid-template-columns:1fr}
+      .admin-main{padding:25px 15px}
+      .topbar{padding:14px 20px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ LOGIN ══ -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-box">
+    <div class="login-icon">🔐</div>
+    <h2>لوحة التحكم</h2>
+    <p>أدخل كلمة السر للدخول</p>
+    <input type="password" id="passInput" placeholder="••••••••" onkeydown="if(event.key==='Enter')login()"/>
+    <button class="btn-login" onclick="login()"><i class="fas fa-unlock"></i> دخول</button>
+    <p class="login-err" id="loginErr">❌ كلمة السر غير صحيحة!</p>
+  </div>
+</div>
+
+<!-- ══ ADMIN ══ -->
+<div class="admin-wrap" id="adminWrap">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-title"><i class="fas fa-gauge-high"></i> لوحة التحكم</div>
+    <div class="topbar-right">
+      <a class="btn-view" href="index.html" target="_blank">
+        <i class="fas fa-external-link-alt"></i> عرض الموقع
+      </a>
+      <button class="btn-logout" onclick="logout()">
+        <i class="fas fa-sign-out-alt"></i> خروج
+      </button>
+    </div>
+  </div>
+
+  <div class="admin-main">
+
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-icon"><i class="fas fa-film"></i></div>
+        <div>
+          <div class="stat-num" id="stP">0</div>
+          <div class="stat-lbl">إجمالي الأعمال</div>
+        </div>
+      </div>
+      <div class="stat">
+        <div class="stat-icon"><i class="fas fa-tags"></i></div>
+        <div>
+          <div class="stat-num" id="stC">0</div>
+          <div class="stat-lbl">التصنيفات</div>
+        </div>
+      </div>
+      <div class="stat">
+        <div class="stat-icon"><i class="fas fa-calendar"></i></div>
+        <div>
+          <div class="stat-num" id="stY">-</div>
+          <div class="stat-lbl">سنة البداية</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panels">
+
+      <!-- LEFT: FORMS -->
+      <div>
+        <!-- Add Work -->
+        <div class="glass">
+          <h3><i class="fab fa-youtube"></i> إضافة عمل جديد</h3>
+          <div class="fgroup">
+            <label>رابط يوتيوب</label>
+            <input id="inUrl" type="url" placeholder="https://www.youtube.com/watch?v=..."/>
+          </div>
+          <div class="fgroup">
+            <label>عنوان العمل</label>
+            <input id="inTitle" type="text" placeholder="مثال: هوية بصرية"/>
+          </div>
+          <div class="fgroup">
+            <label>التصنيف</label>
+            <select id="inCat">
+              <option value="تصميم">🎨 تصميم</option>
+              <option value="مونتاج">🎬 مونتاج</option>
+              <option value="موشن">✨ موشن جرافيك</option>
+              <option value="تصوير">📸 تصوير</option>
+              <option value="برمجة">💻 برمجة</option>
+              <option value="إعلان">📢 إعلان</option>
+              <option value="أخرى">📁 أخرى</option>
+            </select>
+          </div>
+          <div class="fgroup">
+            <label>وصف (اختياري)</label>
+            <textarea id="inDesc" placeholder="وصف مختصر..."></textarea>
+          </div>
+          <button class="btn-add" onclick="addWork()">
+            <i class="fas fa-plus-circle"></i> نشر العمل
+          </button>
+        </div>
+
+        <!-- Profile -->
+        <div class="glass">
+          <h3><i class="fas fa-id-card"></i> الملف الشخصي</h3>
+          <div class="tab-btns">
+            <button class="tab-btn active" onclick="showTab('info',this)">المعلومات</button>
+            <button class="tab-btn" onclick="showTab('social',this)">التواصل</button>
+            <button class="tab-btn" onclick="showTab('skills',this)">المهارات</button>
+          </div>
+
+          <div id="tab-info">
+            <div class="fgroup"><label>الاسم</label><input id="aName" type="text"/></div>
+            <div class="fgroup"><label>التخصص</label><input id="aRole" type="text"/></div>
+            <div class="fgroup"><label>نبذة عنك</label><textarea id="aBio"></textarea></div>
+            <div class="fgroup"><label>سنة البداية</label><input id="aYear" type="number" min="1990" max="2030"/></div>
+          </div>
+
+          <div id="tab-social" style="display:none">
+            <div class="fgroup"><label><i class="fab fa-youtube"></i> يوتيوب</label><input id="aYT" type="url"/></div>
+            <div class="fgroup"><label><i class="fab fa-instagram"></i> إنستغرام</label><input id="aIG" type="url"/></div>
+            <div class="fgroup"><label><i class="fab fa-twitter"></i> تويتر</label><input id="aTW" type="url"/></div>
+            <div class="fgroup"><label><i class="fab fa-linkedin"></i> لينكد إن</label><input id="aLI" type="url"/></div>
+          </div>
+
+          <div id="tab-skills" style="display:none">
+            <div class="fgroup">
+              <label>أضف مهارة واضغط Enter</label>
+              <input id="skIn" type="text" placeholder="مثال: Premiere Pro" onkeydown="addSkill(event)"/>
+            </div>
+            <div class="skills-wrap" id="skWrap"></div>
+          </div>
+
+          <br/>
+          <button class="btn-save" onclick="saveAbout()">
+            <i class="fas fa-save"></i> حفظ الملف الشخصي
+          </button>
+        </div>
+      </div>
+
+      <!-- RIGHT: WORKS LIST -->
+      <div class="glass" style="position:sticky;top:80px">
+        <h3><i class="fas fa-list"></i> الأعمال المنشورة (<span id="worksCount">0</span>)</h3>
+        <div class="works-list" id="worksList"></div>
+      </div>
+
+    </div>
+  </div>
+</div><!-- /admin-wrap -->
+
+<!-- TOAST -->
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i> <span id="toastMsg">تم!</span></div>
+
+<script>
+  // ══ كلمة السر — غيّرها كما تشاء ══
+  const PASSWORD = '1234';
+
+  let projects = JSON.parse(localStorage.getItem('pf_projects') || '[]');
+  let about    = JSON.parse(localStorage.getItem('pf_about')    || '{}');
+  let skills   = JSON.parse(localStorage.getItem('pf_skills')   || '[]');
+
+  // ══ LOGIN ══
+  function login() {
+    const v = document.getElementById('passInput').value;
+    if(v === PASSWORD) {
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('adminWrap').style.display   = 'block';
+      loadAll();
+    } else {
+      document.getElementById('loginErr').style.display = 'block';
+      document.getElementById('passInput').value = '';
+      document.getElementById('passInput').focus();
+    }
+  }
+  function logout() {
+    document.getElementById('adminWrap').style.display   = 'none';
+    document.getElementById('loginScreen').style.display = 'flex';
+    document.getElementById('passInput').value = '';
+  }
+
+  // ══ LOAD ══
+  function loadAll() {
+    loadAboutForm();
+    renderWorks();
+    updateStats();
+    renderSkills();
+  }
+
+  // ══ YOUTUBE ══
+  function getYTId(url) {
+    const p=[/youtube\.com\/watch\?v=([^&]+)/,/youtu\.be\/([^?&]+)/,
+             /youtube\.com\/embed\/([^?&]+)/,/youtube\.com\/shorts\/([^?&]+)/];
+    for(const r of p){ const m=url.match(r); if(m) return m[1]; }
+    return null;
+  }
+
+  // ══ ADD WORK ══
+  function addWork() {
+    const url   = document.getElementById('inUrl').value.trim();
+    const ttl   = document.getElementById('inTitle').value.trim();
+    const cat   = document.getElementById('inCat').value;
+    const desc  = document.getElementById('inDesc').value.trim();
+    if(!url)  return toast('⚠️ أدخل رابط الفيديو', true);
+    if(!ttl)  return toast('⚠️ أدخل عنوان العمل', true);
+    const id = getYTId(url);
+    if(!id)   return toast('⚠️ الرابط غير صحيح!', true);
+    projects.unshift({id:Date.now(),url,ttl,cat,desc,ytId:id,date:new Date().toLocaleDateString('ar-SA')});
+    save();
+    renderWorks();
+    updateStats();
+    document.getElementById('inUrl').value='';
+    document.getElementById('inTitle').value='';
+    document.getElementById('inDesc').value='';
+    toast('✅ تم نشر العمل بنجاح!');
+  }
+
+  // ══ RENDER WORKS ══
+  function renderWorks() {
+    const list = document.getElementById('worksList');
+    document.getElementById('worksCount').textContent = projects.length;
+    if(!projects.length) {
+      list.innerHTML='<div class="no-works"><i class="fas fa-photo-film" style="font-size:2rem;color:var(--border);display:block;margin-bottom:10px"></i>لا توجد أعمال بعد.</div>';
+      return;
+    }
+    list.innerHTML = projects.map(p=>`
+      <div class="work-item">
+        <div class="work-thumb">
+          <img src="https://img.youtube.com/vi/${p.ytId}/mqdefault.jpg" alt=""/>
+        </div>
+        <div class="work-info">
+          <div class="work-title">${p.ttl}</div>
+          <div class="work-cat">${p.cat}</div>
+          <div class="work-date">${p.date}</div>
+        </div>
+        <div class="work-actions">
+          <button class="wi-btn yt" title="يوتيوب" onclick="window.open('${p.url}','_blank')">
+            <i class="fab fa-youtube"></i>
+          </button>
+          <button class="wi-btn del" title="حذف" onclick="delWork(${p.id})">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </div>`).join('');
+  }
+
+  function delWork(id) {
+    if(!confirm('هل تريد حذف هذا العمل؟')) return;
+    projects = projects.filter(p=>p.id!==id);
+    save(); renderWorks(); updateStats();
+    toast('🗑️ تم حذف العمل');
+  }
+
+  // ══ STATS ══
+  function updateStats() {
+    document.getElementById('stP').textContent = projects.length;
+    document.getElementById('stC').textContent = new Set(projects.map(p=>p.cat)).size;
+    if(about.year) document.getElementById('stY').textContent = about.year;
+  }
+
+  // ══ ABOUT ══
+  function loadAboutForm() {
+    document.getElementById('aName').value = about.name||'';
+    document.getElementById('aRole').value = about.role||'';
+    document.getElementById('aBio').value  = about.bio ||'';
+    document.getElementById('aYT').value   = about.yt  ||'';
+    document.getElementById('aIG').value   = about.ig  ||'';
+    document.getElementById('aTW').value   = about.tw  ||'';
+    document.getElementById('aLI').value   = about.li  ||'';
+    document.getElementById('aYear').value = about.year||'';
+  }
+
+  function saveAbout() {
+    about = {
+      name: document.getElementById('aName').value.trim(),
+      role: document.getElementById('aRole').value.trim(),
+      bio : document.getElementById('aBio').value.trim(),
+      yt  : document.getElementById('aYT').value.trim(),
+      ig  : document.getElementById('aIG').value.trim(),
+      tw  : document.getElementById('aTW').value.trim(),
+      li  : document.getElementById('aLI').value.trim(),
+      year: document.getElementById('aYear').value.trim(),
+    };
+    localStorage.setItem('pf_about', JSON.stringify(about));
+    localStorage.setItem('pf_skills', JSON.stringify(skills));
+    updateStats();
+    toast('✅ تم حفظ الملف الشخصي!');
+  }
+
+  // ══ SKILLS ══
+  function addSkill(e) {
+    if(e.key!=='Enter') return;
+    const v = document.getElementById('skIn').value.trim();
+    if(!v || skills.includes(v)) return;
+    skills.push(v);
+    document.getElementById('skIn').value='';
+    renderSkills();
+  }
+  function removeSkill(s) {
+    skills=skills.filter(x=>x!==s); renderSkills();
+  }
+  function renderSkills() {
+    document.getElementById('skWrap').innerHTML = skills.map(s=>
+      `<div class="sk-pill">${s}<span class="rm" onclick="removeSkill('${s}')">✕</span></div>`
+    ).join('') || '<span style="color:var(--muted);font-size:.82rem">لا توجد مهارات بعد</span>';
+  }
+
+  // ══ TABS ══
+  function showTab(name, btn) {
+    ['info','social','skills'].forEach(t =>
+      document.getElementById('tab-'+t).style.display='none');
+    document.getElementById('tab-'+name).style.display='block';
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  // ══ SAVE ══
+  function save() {
+    localStorage.setItem('pf_projects', JSON.stringify(projects));
+  }
+
+  // ══ TOAST ══
+  function toast(msg, err=false) {
+    const t=document.getElementById('toast');
+    document.getElementById('toastMsg').textContent=msg;
+    t.style.background = err
+      ? 'linear-gradient(135deg,#FF4458,#FF6B6B)'
+      : 'linear-gradient(135deg,#00C6FF,#0072FF)';
+    t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),3000);
+  }
+</script>
+</body>
+</html>
