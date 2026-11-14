@@ -1,1006 +1,333 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" class="scroll-smooth">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>معرض الأعمال الشخصي | Portfolio</title>
-  <meta name="description" content="موقع بورتفوليو شخصي عصري بتصميم أبيض مينيماليست أنيق" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>استوديو الموشن والمونتاج | مصمم موشن جرافيك ومحرر فيديو</title>
+  <meta name="description" content="معرض أعمال وموقع تعريفي سينمائي لمصمم موشن جرافيك ومحرر فيديو محترف. استكشف الشوريل وأحدث إعلانات الموشن والمونتاج الإيقاعي.">
 
-  <!-- Google Fonts: Cairo & Plus Jakarta Sans -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Google Fonts: Cairo & Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              50: '#fafafa',
-              100: '#f4f4f5',
-              200: '#e4e4e7',
-              300: '#d4d4d8',
-              400: '#a1a1aa',
-              500: '#71717a',
-              600: '#52525b',
-              700: '#3f3f46',
-              800: '#27272a',
-              900: '#18181b',
-              950: '#09090b',
-            }
-          },
-          fontFamily: {
-            ar: ['Cairo', 'sans-serif'],
-            en: ['Plus Jakarta Sans', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="style.css" />
+  <!-- Single-Accent Modern Stylesheet (v3 Updated Colors) -->
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
-<body class="bg-white text-brand-900 font-ar selection:bg-brand-900 selection:text-white transition-colors duration-300">
+<body>
 
-  <!-- Toast Notification -->
-  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
-    <div class="bg-brand-950 text-white text-sm px-5 py-3 rounded-full shadow-2xl flex items-center gap-2 border border-brand-800">
-      <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
-      <span id="toast-message">تم نسخ البريد بنجاح!</span>
-    </div>
-  </div>
+  <!-- Film Grain Overlay for Cinematic Atmosphere -->
+  <div class="film-grain"></div>
 
-  <!-- Header / Navigation Bar -->
-  <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-brand-100 transition-all duration-200">
-    <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-      
-      <!-- Logo -->
-      <a href="#hero" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-xl bg-brand-950 text-white flex items-center justify-center font-bold text-lg tracking-tight group-hover:scale-105 transition-transform">
-          A
-        </div>
-        <div class="flex flex-col">
-          <span class="font-extrabold text-base tracking-tight" data-i18n="name">أحمد عبد الله</span>
-          <span class="text-xs text-brand-400 font-medium" data-i18n="role-brief">مطور ومصمم برمجيات</span>
-        </div>
+  <!-- Ambient Light Accents (Electric Lime) -->
+  <div class="ambient-lighting"></div>
+  <div class="ambient-lighting-bottom"></div>
+
+  <!-- Header & Navigation -->
+  <header class="header">
+    <div class="container nav-container">
+      <a href="#hero" class="brand">
+        <div class="brand-symbol">M</div>
+        <span>MOTION<span style="color: var(--accent);">STUDIO</span></span>
       </a>
 
-      <!-- Desktop Navigation Menu -->
-      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-brand-600">
-        <a href="#about" class="hover:text-brand-950 transition-colors" data-i18n="nav-about">من أنا</a>
-        <a href="#skills" class="hover:text-brand-950 transition-colors" data-i18n="nav-skills">المهارات</a>
-        <a href="#projects" class="hover:text-brand-950 transition-colors" data-i18n="nav-projects">المشاريع</a>
-        <a href="#experience" class="hover:text-brand-950 transition-colors" data-i18n="nav-experience">المسار المهني</a>
-        <a href="#contact" class="hover:text-brand-950 transition-colors" data-i18n="nav-contact">تواصل معي</a>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="#hero" class="nav-link active">الرئيسية</a></li>
+          <li><a href="#works" class="nav-link">الأعمال والمشاريع</a></li>
+          <li><a href="#craft" class="nav-link">مجالات الإبداع</a></li>
+          <li><a href="#tools" class="nav-link">البرامج</a></li>
+          <li><a href="#direct-contact" class="nav-link" style="color: var(--accent);">التواصل المباشر</a></li>
+        </ul>
       </nav>
 
-      <!-- Actions: Language Switcher & Contact Button -->
-      <div class="flex items-center gap-3">
-        <!-- Language Switcher -->
-        <button id="lang-toggle" class="px-3 py-1.5 rounded-lg border border-brand-200 text-xs font-bold text-brand-700 hover:bg-brand-50 hover:border-brand-300 transition-all flex items-center gap-1.5" title="تبديل اللغة / Switch Language">
-          <i data-lucide="globe" class="w-3.5 h-3.5"></i>
-          <span id="lang-label">EN</span>
-        </button>
-
-        <!-- CTA Button -->
-        <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-950 text-white text-xs font-bold hover:bg-brand-800 transition-all shadow-sm hover:shadow hover:-translate-y-0.5">
-          <span data-i18n="cta-hire">وظفني الآن</span>
-          <i data-lucide="arrow-left" class="w-3.5 h-3.5 lang-arrow"></i>
-        </a>
-
-        <!-- Mobile Menu Toggle -->
-        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-brand-700 hover:bg-brand-100 transition-colors" aria-label="القائمة">
-          <i data-lucide="menu" class="w-6 h-6"></i>
-        </button>
-      </div>
-    </div>
-
-    <!-- Mobile Dropdown Menu -->
-    <div id="mobile-menu" class="hidden md:hidden border-b border-brand-100 bg-white px-6 py-5 flex flex-col gap-4 text-sm font-semibold">
-      <a href="#about" class="mobile-nav-link text-brand-700 hover:text-brand-950" data-i18n="nav-about">من أنا</a>
-      <a href="#skills" class="mobile-nav-link text-brand-700 hover:text-brand-950" data-i18n="nav-skills">المهارات</a>
-      <a href="#projects" class="mobile-nav-link text-brand-700 hover:text-brand-950" data-i18n="nav-projects">المشاريع</a>
-      <a href="#experience" class="mobile-nav-link text-brand-700 hover:text-brand-950" data-i18n="nav-experience">المسار المهني</a>
-      <a href="#contact" class="mobile-nav-link text-brand-700 hover:text-brand-950" data-i18n="nav-contact">تواصل معي</a>
-      <div class="pt-2 border-t border-brand-100">
-        <a href="#contact" class="mobile-nav-link inline-flex w-full justify-center items-center gap-2 py-3 rounded-xl bg-brand-950 text-white text-xs font-bold">
-          <span data-i18n="cta-hire">وظفني الآن</span>
-        </a>
-      </div>
+      <a href="#direct-contact" class="nav-direct-btn">
+        <i class="fab fa-whatsapp"></i>
+        <span>تواصل مباشر</span>
+      </a>
     </div>
   </header>
 
   <main>
-    <!-- HERO SECTION -->
-    <section id="hero" class="relative pt-20 pb-28 px-6 overflow-hidden">
-      <!-- Subtle Minimal Background Grid / Decor -->
-      <div class="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#f5f5f5_1px,transparent_1px),linear-gradient(to_bottom,#f5f5f5_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
-
-      <div class="max-w-4xl mx-auto text-center flex flex-col items-center">
-        <!-- Availability Badge -->
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-200 bg-white/90 text-xs font-medium text-brand-700 mb-8 shadow-sm">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span data-i18n="hero-available">متاح للعمل الحر والمشاريع النوعية</span>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="container">
+        <!-- Live Availability Tag -->
+        <div class="hero-tag">
+          <span class="live-rec-dot"></span>
+          <span>REC • متاح للإنتاج، الإعلانات والعمل الحر</span>
         </div>
 
-        <!-- Main Title -->
-        <h1 class="text-4xl sm:text-6xl md:text-7xl font-black text-brand-950 tracking-tight leading-[1.15] mb-6">
-          <span data-i18n="hero-title-1">أبني حلولاً رقمية</span> <br class="hidden sm:inline" />
-          <span class="underline decoration-brand-200 underline-offset-8" data-i18n="hero-title-2">بسيطة، سريعة وأنيقة.</span>
+        <!-- Headline -->
+        <h1 class="hero-title">
+          مصمم <span class="accent-text">موشن جرافيك</span>
+          <br>
+          ومحرر <span class="accent-text">فيديو سينمائي</span>
         </h1>
 
-        <!-- Subtitle -->
-        <p class="max-w-2xl text-lg sm:text-xl text-brand-500 leading-relaxed mb-10 font-normal" data-i18n="hero-desc">
-          مصمم موشن جرافيك، أركز على تجربة المستخدم الفريدة، الأداء الفائق، والكود النظيف المعياري. أحول الأفكار إلى منتجات رقمية استثنائية.
+        <p class="hero-desc">
+          أحول المشاهد والأفكار إلى تجارب بصرية حية تأسر الانتباه. متخصص في إنتاج الإعلانات التجارية ثلاثية الأبعاد، تحريك الهويات البصرية، والمونتاج الإيقاعي السريع الذي يضمن أعلى معدلات المشاهدة والتحويل.
         </p>
 
-        <!-- CTA Buttons -->
-        <div class="flex flex-wrap items-center justify-center gap-4 mb-16">
-          <a href="#projects" class="px-7 py-3.5 rounded-xl bg-brand-950 text-white font-bold text-sm hover:bg-brand-800 transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 flex items-center gap-2">
-            <span data-i18n="hero-btn-work">استعرض أعمالي</span>
-            <i data-lucide="sparkles" class="w-4 h-4"></i>
+        <!-- Call to Actions -->
+        <div class="hero-actions">
+          <a href="#works" class="btn-primary">
+            <i class="fas fa-film"></i>
+            <span>استعراض الأعمال والمشاريع</span>
           </a>
-          <a href="#contact" class="px-7 py-3.5 rounded-xl border border-brand-300 bg-white font-bold text-sm text-brand-900 hover:bg-brand-50 hover:border-brand-400 transition-all flex items-center gap-2">
-            <span data-i18n="hero-btn-contact">تواصل معي مباشرة</span>
-            <i data-lucide="message-square" class="w-4 h-4"></i>
+          <a href="#direct-contact" class="btn-secondary">
+            <i class="fas fa-bolt"></i>
+            <span>قائمة التواصل المباشر</span>
           </a>
-          <button id="cv-btn" class="px-5 py-3.5 rounded-xl border border-dashed border-brand-300 text-brand-600 hover:text-brand-950 hover:border-brand-500 font-semibold text-sm transition-all flex items-center gap-2">
-            <i data-lucide="download" class="w-4 h-4"></i>
-            <span data-i18n="hero-btn-cv">تحميل الـ CV</span>
-          </button>
         </div>
-
-        <!-- Social Proof Stats -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-10 w-full pt-10 border-t border-brand-100">
-          <div class="text-center">
-            <div class="text-3xl sm:text-4xl font-extrabold text-brand-950 tracking-tight" data-target="5">5+</div>
-            <div class="text-xs text-brand-400 mt-1 font-medium" data-i18n="stat-years">سنوات خبرة متواصلة</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl sm:text-4xl font-extrabold text-brand-950 tracking-tight" data-target="42">+40</div>
-            <div class="text-xs text-brand-400 mt-1 font-medium" data-i18n="stat-projects">مشروعاً ناجحاً ومكتملاً</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl sm:text-4xl font-extrabold text-brand-950 tracking-tight" data-target="100">%100</div>
-            <div class="text-xs text-brand-400 mt-1 font-medium" data-i18n="stat-clients">التزام بالمواعيد والجودة</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl sm:text-4xl font-extrabold text-brand-950 tracking-tight" data-target="12">12+</div>
-            <div class="text-xs text-brand-400 mt-1 font-medium" data-i18n="stat-awards">عميلاً ومؤسسة سعيدة</div>
-          </div>
-        </div>
-
       </div>
     </section>
 
-    <!-- ABOUT SECTION -->
-    <section id="about" class="py-24 px-6 border-t border-brand-100 bg-brand-50/50">
-      <div class="max-w-6xl mx-auto">
-        
-        <!-- Section Header -->
-        <div class="flex flex-col items-center text-center mb-16">
-          <span class="text-xs font-bold uppercase tracking-wider text-brand-400 mb-2" data-i18n="about-badge">نبذة عني</span>
-          <h2 class="text-3xl sm:text-4xl font-black text-brand-950" data-i18n="about-title">شغف بالبساطة والابتكار</h2>
-          <div class="w-12 h-1 bg-brand-950 mt-4 rounded-full"></div>
+    <!-- Works / Projects Showcase -->
+    <section class="section" id="works">
+      <div class="container">
+        <div class="section-title-wrap">
+          <span class="section-label">معرض الإنتاجات</span>
+          <h2 class="section-heading">أحدث أعمال الموشن جرافيك والمونتاج</h2>
         </div>
 
-        <div class="grid md:grid-cols-12 gap-12 items-center">
-          
-          <!-- Image / Minimal Avatar Card -->
-          <div class="md:col-span-5 flex justify-center">
-            <div class="relative group">
-              <!-- Geometric white photo frame -->
-              <div class="w-72 h-88 sm:w-80 sm:h-96 rounded-2xl bg-white border border-brand-200 p-3 shadow-lg relative overflow-hidden">
-                <div class="w-full h-full rounded-xl bg-gradient-to-tr from-brand-100 via-white to-brand-50 border border-brand-100 flex flex-col items-center justify-center p-6 text-center relative overflow-hidden">
-                  <div class="w-28 h-28 rounded-full bg-brand-950 text-white flex items-center justify-center text-4xl font-bold mb-4 shadow-inner">
-                    AA
-                  </div>
-                  <h3 class="font-extrabold text-lg text-brand-950" data-i18n="name">أحمد عبد الله</h3>
-                  <p class="text-xs text-brand-500 mt-1 font-medium" data-i18n="role-full">Full-Stack Web Developer & UI Designer</p>
-                  
-                  <div class="mt-6 flex items-center gap-3">
-                    <span class="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-semibold bg-white border border-brand-200 text-brand-700">TypeScript</span>
-                    <span class="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-semibold bg-white border border-brand-200 text-brand-700">Next.js</span>
-                    <span class="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-semibold bg-white border border-brand-200 text-brand-700">Tailwind</span>
-                  </div>
-                </div>
-              </div>
-              <div class="absolute -bottom-4 -right-4 -z-10 w-full h-full rounded-2xl border-2 border-dashed border-brand-300"></div>
-            </div>
-          </div>
-
-          <!-- Description and Pillars -->
-          <div class="md:col-span-7 flex flex-col gap-6">
-            <h3 class="text-2xl font-bold text-brand-900 leading-snug" data-i18n="about-heading">
-              أساعد الشركات ورواد الأعمال في صياغة هوياتهم الرقمية وتحويل التعقيد إلى بساطة مدروسة.
-            </h3>
-            
-            <p class="text-brand-600 leading-relaxed text-sm sm:text-base font-normal" data-i18n="about-p1">
-              بدأت رحلتي في البرمجة منذ أكثر من 5 سنوات، شغفي هو تصميم وبناء تجارب ويب تجمع بين دقة التصميم الهندسي وقوة الأداء التقني. أؤمن أن التصميم المتقن ليس ما يُرى فحسب، بل كيف يعمل بسلاسة دون عناء.
-            </p>
-
-            <p class="text-brand-600 leading-relaxed text-sm sm:text-base font-normal" data-i18n="about-p2">
-              سواء كنت تبحث عن منصة متكاملة SaaS، موقع شركة عالي الفخامة، أو تطبيق ويب سريع متجاوب، فإنني أقدم حلولاً متكاملة من الفكرة والنمذجة حتى الإطلاق والتحسين.
-            </p>
-
-            <!-- 4 Service Highlights -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-              <div class="p-4 rounded-xl bg-white border border-brand-200 shadow-sm flex items-start gap-3">
-                <div class="p-2 rounded-lg bg-brand-100 text-brand-900 mt-1">
-                  <i data-lucide="layout" class="w-4 h-4"></i>
-                </div>
-                <div>
-                  <h4 class="font-bold text-sm text-brand-900" data-i18n="srv-1-title">تصميم واجهات المستخدم</h4>
-                  <p class="text-xs text-brand-500 mt-0.5" data-i18n="srv-1-desc">تصاميم حديثة ومريحة للعين وفق أحدث المعايير العالمية.</p>
-                </div>
-              </div>
-
-              <div class="p-4 rounded-xl bg-white border border-brand-200 shadow-sm flex items-start gap-3">
-                <div class="p-2 rounded-lg bg-brand-100 text-brand-900 mt-1">
-                  <i data-lucide="code-2" class="w-4 h-4"></i>
-                </div>
-                <div>
-                  <h4 class="font-bold text-sm text-brand-900" data-i18n="srv-2-title">تطوير تطبيقات الويب</h4>
-                  <p class="text-xs text-brand-500 mt-0.5" data-i18n="srv-2-desc">بناء تطبيقات متكاملة وسريعة باستخدام أحدث أطر العمل.</p>
-                </div>
-              </div>
-
-              <div class="p-4 rounded-xl bg-white border border-brand-200 shadow-sm flex items-start gap-3">
-                <div class="p-2 rounded-lg bg-brand-100 text-brand-900 mt-1">
-                  <i data-lucide="zap" class="w-4 h-4"></i>
-                </div>
-                <div>
-                  <h4 class="font-bold text-sm text-brand-900" data-i18n="srv-3-title">تحسين سرعة وتوافق SEO</h4>
-                  <p class="text-xs text-brand-500 mt-0.5" data-i18n="srv-3-desc">تحميل لحظي ودرجات قياسية في محركات البحث ومؤشرات الويب.</p>
-                </div>
-              </div>
-
-              <div class="p-4 rounded-xl bg-white border border-brand-200 shadow-sm flex items-start gap-3">
-                <div class="p-2 rounded-lg bg-brand-100 text-brand-900 mt-1">
-                  <i data-lucide="shield-check" class="w-4 h-4"></i>
-                </div>
-                <div>
-                  <h4 class="font-bold text-sm text-brand-900" data-i18n="srv-4-title">كود نظيف وآمن</h4>
-                  <p class="text-xs text-brand-500 mt-0.5" data-i18n="srv-4-desc">بنية برمجية معيارية قابلة للتطوير المستقبلي بسهولة.</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
+        <!-- Category Filter -->
+        <div class="work-filter-bar">
+          <button class="filter-chip active" data-filter="all">جميع الأعمال</button>
+          <button class="filter-chip" data-filter="commercial">إعلانات وموشن 3D</button>
+          <button class="filter-chip" data-filter="brand">تحريك هويات وتيبوغرافي</button>
+          <button class="filter-chip" data-filter="reels">مونتاج وسوشيال ميديا</button>
+          <button class="filter-chip" data-filter="color">تصحيح ألوان ومؤثرات</button>
         </div>
 
+        <!-- Works Grid -->
+        <div class="works-grid" id="works-container">
+          <!-- Populated by script.js -->
+        </div>
       </div>
     </section>
 
-    <!-- SKILLS SECTION -->
-    <section id="skills" class="py-24 px-6 border-t border-brand-100 bg-white">
-      <div class="max-w-6xl mx-auto">
-        
-        <div class="flex flex-col items-center text-center mb-16">
-          <span class="text-xs font-bold uppercase tracking-wider text-brand-400 mb-2" data-i18n="skills-badge">التقنيات والأدوات</span>
-          <h2 class="text-3xl sm:text-4xl font-black text-brand-950" data-i18n="skills-title">المهارات التقنية</h2>
-          <div class="w-12 h-1 bg-brand-950 mt-4 rounded-full"></div>
+    <!-- Craft / Services Section -->
+    <section class="section" id="craft">
+      <div class="container">
+        <div class="section-title-wrap">
+          <span class="section-label">الخبرات والخدمات</span>
+          <h2 class="section-heading">ما أقدمه كصانع محتوى بصري ومحرر فيديو</h2>
         </div>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          
-          <!-- Skill Card 1: Frontend -->
-          <div class="p-6 rounded-2xl border border-brand-200 bg-white hover:border-brand-400 hover:shadow-md transition-all group">
-            <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-950 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-              <i data-lucide="monitor" class="w-5 h-5"></i>
-            </div>
-            <h3 class="font-bold text-base text-brand-900 mb-2" data-i18n="sk-cat-1">الواجهات الأمامية</h3>
-            <p class="text-xs text-brand-500 mb-4" data-i18n="sk-desc-1">بناء واجهات تفاعلية سريعة متوافقة مع جميع الشاشات.</p>
-            <div class="flex flex-wrap gap-1.5">
-              <span class="text-xs px-2.5 py-1 bg-brand-50 text-brand-800 rounded-md border border-brand-200">React.js</span>
-              <span class="text-xs px-2.5 py-1 bg-brand-50 text-brand-800 rounded-md border border-brand-200">Next.js</span>
-              <span class="text-xs px-2.5 py-1 bg-brand-50 text-brand-800 rounded-md border border-brand-200">TypeScript</span>
-              <span class="text-xs px-2.5 py-1 bg-brand-50 text-brand-800 rounded-md border border-brand-200">Tailwind CSS</span>
-              <span class="text-xs px-2.5 py-1 bg-brand-50 text-brand-800 rounded-md border border-brand-200">HTML5/CSS3</span>
-            </div>
+        <div class="services-grid">
+          <div class="service-item">
+            <span class="service-num">01 //</span>
+            <h3>موشن جرافيك إعلاني وتجاري (2D & 3D)</h3>
+            <p>تصميم إعلانات حركية احترافية تسلّط الضوء على مزايا المنتجات وتجذب العملاء في الثواني الخمس الأولى بأسلوب مشوّق وعصري.</p>
           </div>
 
-          <!-- Skill Card 2: Backend -->
-          <div class="p-6 rounded-2xl border border-brand-200 bg-white hover:border-brand-400 hover:shadow-md transition-all group">
-            <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-950 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-              <i data-lucide="server" class="w-5 h-5"></i>
-            </div>
-            <h3 class="font-bold text-base text-brand-900 mb-2" data-i18n="sk-cat-2">الخوادم وقواعد البيانات</h3>
-            <p class="text-xs text-brand-500 mb-4" data-i18n="sk-desc-2">برمجة خلفية آمنة وبناء واجهات برمجة تطبيقات متينة.</p>
-            <div class="flex flex-wrap gap-1.5">
-              <span class="text-xs px-2.5 py-1 bg-brand-50 text-brand-800 rounded-md border border-brand-200">Node.js</span>
-              <span class="text-xs px-2.5 py-1 bg-brand-50 text-brand-800 rounded-md border border-brand-200">Express</span>
-              <span class="text-xs px-2.5 py-1 bg-brand-50 text-brand-800 rounded-md border border-brand-200">PostgreSQL</span>
-              <span class="text-xs px-2.5 py-1 bg-brand-50 text-brand-800 rounded-md border border-brand-200">MongoDB</span>
-              <span class="text-xs px-2.5 py-1 bg-brand-50 text-brand-800 rounded-md border border-brand-200">RESTful APIs</span>
-            </div>
+          <div class="service-item">
+            <span class="service-num">02 //</span>
+            <h3>مونتاج سينمائي وإيقاعي (Video Editing)</h3>
+            <p>مونتاج مقاطع يوتيوب، برودكاست، وريلز بتكنيك الـ Retention Editing مع تقطيع ديناميكي، مؤثرات صوتية وتدفق بصري جذاب.</p>
           </div>
 
-          <!-- Skill Card 3: UI/UX & Design -->
-          <div class="p-6 rounded-2xl border border-brand-200 bg-white hover:border-brand-400 hover:shadow-md transition-all group">
-            <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-950 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-              <i data-lucide="palette" class="w-5 h-5"></i>
-            </div>
-            <h3 class="font-bold text-base text-brand-900 mb-2" data-i18n="sk-cat-3">التصميم وتجربة المستخدم</h3>
-            <p class="text-xs text-brand-500 mb-4" data-i18n="sk-desc-3">تخطيط رحلات المستخدم وصياغة نماذج أولية جذابة.</p>
-            <div class="flex flex-wrap gap-1.5">
-              <span class="text-xs px-2.5 py-1 bg-brand-50 text-brand-800 rounded-md border border-brand-200">Figma</span>
-              <span class="text-xs px-2.5 py-1 bg-brand-50 text-brand-800 rounded-md border border-brand-200">Wireframing</span>
-              <span class="text-xs px-2.5 py-1 bg-brand-50 text-brand-800 rounded-md border border-brand-200">Design Systems</span>
-              <span class="text-xs px-2.5 py-1 bg-brand-50 text-brand-800 rounded-md border border-brand-200">Prototyping</span>
-              <span class="text-xs px-2.5 py-1 bg-brand-50 text-brand-800 rounded-md border border-brand-200">Responsive UI</span>
-            </div>
+          <div class="service-item">
+            <span class="service-num">03 //</span>
+            <h3>تحريك الشعارات وتيبوغرافي حركي (Kinetic Typography)</h3>
+            <p>إحياء الهويات البصرية والشعارات بحركات أنيقة تناسب افتتاحيات الفيديوهات والمنصات الرقمية وبناء هوية لا تُنسى.</p>
           </div>
 
-          <!-- Skill Card 4: Tools & DevOps -->
-          <div class="p-6 rounded-2xl border border-brand-200 bg-white hover:border-brand-400 hover:shadow-md transition-all group">
-            <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-950 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-              <i data-lucide="git-branch" class="w-5 h-5"></i>
-            </div>
-            <h3 class="font-bold text-base text-brand-900 mb-2" data-i18n="sk-cat-4">الأدوات والنشر</h3>
-            <p class="text-xs text-brand-500 mb-4" data-i18n="sk-desc-4">إدارة الإصدارات والأتمتة واستضافة السحابة.</p>
-            <div class="flex flex-wrap gap-1.5">
-              <span class="text-xs px-2.5 py-1 bg-brand-50 text-brand-800 rounded-md border border-brand-200">Git / GitHub</span>
-              <span class="text-xs px-2.5 py-1 bg-brand-50 text-brand-800 rounded-md border border-brand-200">Docker</span>
-              <span class="text-xs px-2.5 py-1 bg-brand-50 text-brand-800 rounded-md border border-brand-200">Vercel / Cloudflare</span>
-              <span class="text-xs px-2.5 py-1 bg-brand-50 text-brand-800 rounded-md border border-brand-200">Linux CLI</span>
-              <span class="text-xs px-2.5 py-1 bg-brand-50 text-brand-800 rounded-md border border-brand-200">CI/CD</span>
-            </div>
+          <div class="service-item">
+            <span class="service-num">04 //</span>
+            <h3>تصحيح وتدريج الألوان (Color Grading)</h3>
+            <p>ضبط نغمات الألوان وتطبيق LUTs سينمائية تمنح الكاميرات الخام (Log / RAW) عمقاً ودراما بصرية تليق بالإنتاجات الكبرى.</p>
           </div>
 
+          <div class="service-item">
+            <span class="service-num">05 //</span>
+            <h3>تصميم الصوت والمؤثرات (Sound Design & Foley)</h3>
+            <p>إضافة المؤثرات الصوتية الدقيقة (Whooshes, Risers, Hits) لتعزيز كل حركة على الشاشة ومنح الفيديو طاقة وشعوراً واقعياً.</p>
+          </div>
+
+          <div class="service-item">
+            <span class="service-num">06 //</span>
+            <h3>فيديوهات توضيحية شارحة (Explainer Videos)</h3>
+            <p>تبسيط الخدمات والحلول البرمجية التقنية المعقدة إلى رسوم توضيحية سهلة الفهم وممتعة في المشاهدة للمستخدمين والشركات.</p>
+          </div>
         </div>
-
       </div>
     </section>
 
-    <!-- PROJECTS PORTFOLIO SECTION -->
-    <section id="projects" class="py-24 px-6 border-t border-brand-100 bg-brand-50/40">
-      <div class="max-w-6xl mx-auto">
-        
-        <div class="flex flex-col items-center text-center mb-12">
-          <span class="text-xs font-bold uppercase tracking-wider text-brand-400 mb-2" data-i18n="projects-badge">أحدث الإنجازات</span>
-          <h2 class="text-3xl sm:text-4xl font-black text-brand-950" data-i18n="projects-title">معرض الأعمال والمشاريع</h2>
-          <div class="w-12 h-1 bg-brand-950 mt-4 rounded-full"></div>
+    <!-- Software Stack Section -->
+    <section class="section" id="tools">
+      <div class="container">
+        <div class="section-title-wrap">
+          <span class="section-label">حزمة البرامج والأدوات</span>
+          <h2 class="section-heading">أدوات صناعة المشهد السينمائي</h2>
         </div>
 
-        <!-- Filter Buttons -->
-        <div class="flex flex-wrap items-center justify-center gap-2 mb-12">
-          <button class="filter-btn active px-4 py-2 rounded-xl text-xs font-bold transition-all border border-brand-950 bg-brand-950 text-white shadow-sm" data-filter="all" data-i18n="filter-all">
-            جميع الأعمال
-          </button>
-          <button class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition-all border border-brand-200 bg-white text-brand-700 hover:border-brand-400" data-filter="web" data-i18n="filter-web">
-            مواقع وتطبيقات الويب
-          </button>
-          <button class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition-all border border-brand-200 bg-white text-brand-700 hover:border-brand-400" data-filter="saas" data-i18n="filter-saas">
-            منصات سحابية SaaS
-          </button>
-          <button class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition-all border border-brand-200 bg-white text-brand-700 hover:border-brand-400" data-filter="ui" data-i18n="filter-ui">
-            تصميم واجهات UI/UX
-          </button>
+        <div class="software-grid">
+          <div class="software-card">
+            <i class="fas fa-layer-group software-icon"></i>
+            <span class="software-name">After Effects</span>
+            <span class="software-level">خبير تحريك ومؤثرات</span>
+          </div>
+
+          <div class="software-card">
+            <i class="fas fa-film software-icon"></i>
+            <span class="software-name">Premiere Pro</span>
+            <span class="software-level">مونتاج وسرد قصصي</span>
+          </div>
+
+          <div class="software-card">
+            <i class="fas fa-adjust software-icon"></i>
+            <span class="software-name">DaVinci Resolve</span>
+            <span class="software-level">تصحيح ألوان متقدم</span>
+          </div>
+
+          <div class="software-card">
+            <i class="fas fa-cube software-icon"></i>
+            <span class="software-name">Cinema 4D</span>
+            <span class="software-level">موشن ثلاثي الأبعاد</span>
+          </div>
+
+          <div class="software-card">
+            <i class="fas fa-shapes software-icon"></i>
+            <span class="software-name">Blender 3D</span>
+            <span class="software-level">نمذجة وإضاءة</span>
+          </div>
+
+          <div class="software-card">
+            <i class="fas fa-vector-square software-icon"></i>
+            <span class="software-name">Adobe Illustrator</span>
+            <span class="software-level">تجهيز الفيكتور للموشن</span>
+          </div>
         </div>
-
-        <!-- Projects Grid -->
-        <div id="projects-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          
-          <!-- Project 1 -->
-          <div class="project-card group bg-white border border-brand-200 rounded-2xl overflow-hidden hover:border-brand-400 hover:shadow-xl transition-all duration-300 flex flex-col" data-category="saas" data-project-id="1">
-            <div class="h-48 bg-gradient-to-br from-brand-100 via-white to-brand-50 border-b border-brand-100 p-6 flex flex-col justify-between relative overflow-hidden">
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] font-bold px-2.5 py-1 rounded-md bg-white border border-brand-200 text-brand-800">SaaS / Cloud</span>
-                <span class="text-xs font-semibold text-brand-400">2026</span>
-              </div>
-              <div class="flex items-center justify-center py-4">
-                <div class="w-16 h-16 rounded-2xl bg-white border border-brand-200 shadow-sm flex items-center justify-center text-brand-900 group-hover:scale-110 transition-transform">
-                  <i data-lucide="bar-chart-3" class="w-8 h-8"></i>
-                </div>
-              </div>
-              <div class="text-[10px] text-center text-brand-400 font-mono">analytics-platform.io</div>
-            </div>
-
-            <div class="p-6 flex flex-col flex-1 justify-between">
-              <div>
-                <h3 class="font-extrabold text-lg text-brand-900 group-hover:text-black transition-colors" data-i18n="proj-1-title">لوحة تحليلات سحابية ذكية</h3>
-                <p class="text-xs text-brand-500 mt-2 leading-relaxed line-clamp-2" data-i18n="proj-1-desc">
-                  منصة لوحات قياس فورية للبيانات تدعم معالجة ملايين الأحداث يومياً مع رسوم بيانية تفاعلية وفلاتر متقدمة.
-                </p>
-                <div class="flex flex-wrap gap-1.5 mt-4">
-                  <span class="text-[10px] font-medium px-2 py-0.5 rounded bg-brand-50 border border-brand-200 text-brand-700">Next.js 15</span>
-                  <span class="text-[10px] font-medium px-2 py-0.5 rounded bg-brand-50 border border-brand-200 text-brand-700">Tailwind</span>
-                  <span class="text-[10px] font-medium px-2 py-0.5 rounded bg-brand-50 border border-brand-200 text-brand-700">Prisma</span>
-                </div>
-              </div>
-
-              <div class="pt-5 mt-5 border-t border-brand-100 flex items-center justify-between">
-                <button class="open-modal-btn text-xs font-bold text-brand-900 hover:text-black flex items-center gap-1.5" data-project-id="1">
-                  <span data-i18n="proj-details">تفاصيل المشروع</span>
-                  <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                </button>
-                <span class="text-xs text-emerald-600 font-semibold flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                  <span data-i18n="status-live">متاح أونلاين</span>
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 2 -->
-          <div class="project-card group bg-white border border-brand-200 rounded-2xl overflow-hidden hover:border-brand-400 hover:shadow-xl transition-all duration-300 flex flex-col" data-category="web" data-project-id="2">
-            <div class="h-48 bg-gradient-to-br from-brand-100 via-white to-brand-50 border-b border-brand-100 p-6 flex flex-col justify-between relative overflow-hidden">
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] font-bold px-2.5 py-1 rounded-md bg-white border border-brand-200 text-brand-800">E-Commerce</span>
-                <span class="text-xs font-semibold text-brand-400">2026</span>
-              </div>
-              <div class="flex items-center justify-center py-4">
-                <div class="w-16 h-16 rounded-2xl bg-white border border-brand-200 shadow-sm flex items-center justify-center text-brand-900 group-hover:scale-110 transition-transform">
-                  <i data-lucide="shopping-bag" class="w-8 h-8"></i>
-                </div>
-              </div>
-              <div class="text-[10px] text-center text-brand-400 font-mono">modern-store.co</div>
-            </div>
-
-            <div class="p-6 flex flex-col flex-1 justify-between">
-              <div>
-                <h3 class="font-extrabold text-lg text-brand-900 group-hover:text-black transition-colors" data-i18n="proj-2-title">متجر إلكتروني فائق السرعة</h3>
-                <p class="text-xs text-brand-500 mt-2 leading-relaxed line-clamp-2" data-i18n="proj-2-desc">
-                  تجربة شراء حديثة بنظام headless مع ربط بوابات الدفع Stripe و Apple Pay، وسرعة تحميل أقل من 0.8 ثانية.
-                </p>
-                <div class="flex flex-wrap gap-1.5 mt-4">
-                  <span class="text-[10px] font-medium px-2 py-0.5 rounded bg-brand-50 border border-brand-200 text-brand-700">React</span>
-                  <span class="text-[10px] font-medium px-2 py-0.5 rounded bg-brand-50 border border-brand-200 text-brand-700">Shopify API</span>
-                  <span class="text-[10px] font-medium px-2 py-0.5 rounded bg-brand-50 border border-brand-200 text-brand-700">Stripe</span>
-                </div>
-              </div>
-
-              <div class="pt-5 mt-5 border-t border-brand-100 flex items-center justify-between">
-                <button class="open-modal-btn text-xs font-bold text-brand-900 hover:text-black flex items-center gap-1.5" data-project-id="2">
-                  <span data-i18n="proj-details">تفاصيل المشروع</span>
-                  <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                </button>
-                <span class="text-xs text-emerald-600 font-semibold flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                  <span data-i18n="status-live">متاح أونلاين</span>
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 3 -->
-          <div class="project-card group bg-white border border-brand-200 rounded-2xl overflow-hidden hover:border-brand-400 hover:shadow-xl transition-all duration-300 flex flex-col" data-category="ui" data-project-id="3">
-            <div class="h-48 bg-gradient-to-br from-brand-100 via-white to-brand-50 border-b border-brand-100 p-6 flex flex-col justify-between relative overflow-hidden">
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] font-bold px-2.5 py-1 rounded-md bg-white border border-brand-200 text-brand-800">UI/UX Design</span>
-                <span class="text-xs font-semibold text-brand-400">2025</span>
-              </div>
-              <div class="flex items-center justify-center py-4">
-                <div class="w-16 h-16 rounded-2xl bg-white border border-brand-200 shadow-sm flex items-center justify-center text-brand-900 group-hover:scale-110 transition-transform">
-                  <i data-lucide="layers" class="w-8 h-8"></i>
-                </div>
-              </div>
-              <div class="text-[10px] text-center text-brand-400 font-mono">fintech-design-system.fig</div>
-            </div>
-
-            <div class="p-6 flex flex-col flex-1 justify-between">
-              <div>
-                <h3 class="font-extrabold text-lg text-brand-900 group-hover:text-black transition-colors" data-i18n="proj-3-title">نظام تصميم لتطبيق مالي (FinTech)</h3>
-                <p class="text-xs text-brand-500 mt-2 leading-relaxed line-clamp-2" data-i18n="proj-3-desc">
-                  نظام تصميم شامل يضم أكثر من 150 مكوناً تفاعلياً، مع توجيهات ألوان، تيبوغرافي، وتدفقات مستخدم متكاملة.
-                </p>
-                <div class="flex flex-wrap gap-1.5 mt-4">
-                  <span class="text-[10px] font-medium px-2 py-0.5 rounded bg-brand-50 border border-brand-200 text-brand-700">Figma</span>
-                  <span class="text-[10px] font-medium px-2 py-0.5 rounded bg-brand-50 border border-brand-200 text-brand-700">Design System</span>
-                  <span class="text-[10px] font-medium px-2 py-0.5 rounded bg-brand-50 border border-brand-200 text-brand-700">Prototyping</span>
-                </div>
-              </div>
-
-              <div class="pt-5 mt-5 border-t border-brand-100 flex items-center justify-between">
-                <button class="open-modal-btn text-xs font-bold text-brand-900 hover:text-black flex items-center gap-1.5" data-project-id="3">
-                  <span data-i18n="proj-details">تفاصيل المشروع</span>
-                  <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                </button>
-                <span class="text-xs text-brand-500 font-semibold flex items-center gap-1">
-                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
-                  <span data-i18n="status-case">دراسة حالة</span>
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 4 -->
-          <div class="project-card group bg-white border border-brand-200 rounded-2xl overflow-hidden hover:border-brand-400 hover:shadow-xl transition-all duration-300 flex flex-col" data-category="web" data-project-id="4">
-            <div class="h-48 bg-gradient-to-br from-brand-100 via-white to-brand-50 border-b border-brand-100 p-6 flex flex-col justify-between relative overflow-hidden">
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] font-bold px-2.5 py-1 rounded-md bg-white border border-brand-200 text-brand-800">Web App</span>
-                <span class="text-xs font-semibold text-brand-400">2025</span>
-              </div>
-              <div class="flex items-center justify-center py-4">
-                <div class="w-16 h-16 rounded-2xl bg-white border border-brand-200 shadow-sm flex items-center justify-center text-brand-900 group-hover:scale-110 transition-transform">
-                  <i data-lucide="cpu" class="w-8 h-8"></i>
-                </div>
-              </div>
-              <div class="text-[10px] text-center text-brand-400 font-mono">ai-workspace.app</div>
-            </div>
-
-            <div class="p-6 flex flex-col flex-1 justify-between">
-              <div>
-                <h3 class="font-extrabold text-lg text-brand-900 group-hover:text-black transition-colors" data-i18n="proj-4-title">مساعد الإنتاجية بالذكاء الاصطناعي</h3>
-                <p class="text-xs text-brand-500 mt-2 leading-relaxed line-clamp-2" data-i18n="proj-4-desc">
-                  تطبيق يساعد الفرق على تلخيص الاجتماعات وصياغة خطط المشاريع وتوليد المحتوى بشكل مؤتمت وتفاعلي.
-                </p>
-                <div class="flex flex-wrap gap-1.5 mt-4">
-                  <span class="text-[10px] font-medium px-2 py-0.5 rounded bg-brand-50 border border-brand-200 text-brand-700">TypeScript</span>
-                  <span class="text-[10px] font-medium px-2 py-0.5 rounded bg-brand-50 border border-brand-200 text-brand-700">OpenAI API</span>
-                  <span class="text-[10px] font-medium px-2 py-0.5 rounded bg-brand-50 border border-brand-200 text-brand-700">Tailwind</span>
-                </div>
-              </div>
-
-              <div class="pt-5 mt-5 border-t border-brand-100 flex items-center justify-between">
-                <button class="open-modal-btn text-xs font-bold text-brand-900 hover:text-black flex items-center gap-1.5" data-project-id="4">
-                  <span data-i18n="proj-details">تفاصيل المشروع</span>
-                  <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                </button>
-                <span class="text-xs text-emerald-600 font-semibold flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                  <span data-i18n="status-live">متاح أونلاين</span>
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 5 -->
-          <div class="project-card group bg-white border border-brand-200 rounded-2xl overflow-hidden hover:border-brand-400 hover:shadow-xl transition-all duration-300 flex flex-col" data-category="saas" data-project-id="5">
-            <div class="h-48 bg-gradient-to-br from-brand-100 via-white to-brand-50 border-b border-brand-100 p-6 flex flex-col justify-between relative overflow-hidden">
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] font-bold px-2.5 py-1 rounded-md bg-white border border-brand-200 text-brand-800">SaaS / Real-Time</span>
-                <span class="text-xs font-semibold text-brand-400">2025</span>
-              </div>
-              <div class="flex items-center justify-center py-4">
-                <div class="w-16 h-16 rounded-2xl bg-white border border-brand-200 shadow-sm flex items-center justify-center text-brand-900 group-hover:scale-110 transition-transform">
-                  <i data-lucide="check-square" class="w-8 h-8"></i>
-                </div>
-              </div>
-              <div class="text-[10px] text-center text-brand-400 font-mono">taskflow-pro.net</div>
-            </div>
-
-            <div class="p-6 flex flex-col flex-1 justify-between">
-              <div>
-                <h3 class="font-extrabold text-lg text-brand-900 group-hover:text-black transition-colors" data-i18n="proj-5-title">منصة إدارة المشاريع التعاونية</h3>
-                <p class="text-xs text-brand-500 mt-2 leading-relaxed line-clamp-2" data-i18n="proj-5-desc">
-                  أداة تتبع مهام فورية تدعم لوحات كانبان والتنبيهات الحية وتوزيع المهام الذكي بين فرق العمل البرمجية.
-                </p>
-                <div class="flex flex-wrap gap-1.5 mt-4">
-                  <span class="text-[10px] font-medium px-2 py-0.5 rounded bg-brand-50 border border-brand-200 text-brand-700">Vue.js</span>
-                  <span class="text-[10px] font-medium px-2 py-0.5 rounded bg-brand-50 border border-brand-200 text-brand-700">Socket.io</span>
-                  <span class="text-[10px] font-medium px-2 py-0.5 rounded bg-brand-50 border border-brand-200 text-brand-700">Node.js</span>
-                </div>
-              </div>
-
-              <div class="pt-5 mt-5 border-t border-brand-100 flex items-center justify-between">
-                <button class="open-modal-btn text-xs font-bold text-brand-900 hover:text-black flex items-center gap-1.5" data-project-id="5">
-                  <span data-i18n="proj-details">تفاصيل المشروع</span>
-                  <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                </button>
-                <span class="text-xs text-emerald-600 font-semibold flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                  <span data-i18n="status-live">متاح أونلاين</span>
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 6 -->
-          <div class="project-card group bg-white border border-brand-200 rounded-2xl overflow-hidden hover:border-brand-400 hover:shadow-xl transition-all duration-300 flex flex-col" data-category="ui" data-project-id="6">
-            <div class="h-48 bg-gradient-to-br from-brand-100 via-white to-brand-50 border-b border-brand-100 p-6 flex flex-col justify-between relative overflow-hidden">
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] font-bold px-2.5 py-1 rounded-md bg-white border border-brand-200 text-brand-800">Branding & UI</span>
-                <span class="text-xs font-semibold text-brand-400">2024</span>
-              </div>
-              <div class="flex items-center justify-center py-4">
-                <div class="w-16 h-16 rounded-2xl bg-white border border-brand-200 shadow-sm flex items-center justify-center text-brand-900 group-hover:scale-110 transition-transform">
-                  <i data-lucide="sparkle" class="w-8 h-8"></i>
-                </div>
-              </div>
-              <div class="text-[10px] text-center text-brand-400 font-mono">minimal-luxury.brand</div>
-            </div>
-
-            <div class="p-6 flex flex-col flex-1 justify-between">
-              <div>
-                <h3 class="font-extrabold text-lg text-brand-900 group-hover:text-black transition-colors" data-i18n="proj-6-title">واجهة موقع لعلامة تجارية فاخرة</h3>
-                <p class="text-xs text-brand-500 mt-2 leading-relaxed line-clamp-2" data-i18n="proj-6-desc">
-                  تصميم وتطوير موقع تعريفي بتصميم أبيض مينيماليست راقٍ مع حركة انتقالية فائقة النعومة وتجربة تصفح هادئة.
-                </p>
-                <div class="flex flex-wrap gap-1.5 mt-4">
-                  <span class="text-[10px] font-medium px-2 py-0.5 rounded bg-brand-50 border border-brand-200 text-brand-700">Astro</span>
-                  <span class="text-[10px] font-medium px-2 py-0.5 rounded bg-brand-50 border border-brand-200 text-brand-700">GSAP</span>
-                  <span class="text-[10px] font-medium px-2 py-0.5 rounded bg-brand-50 border border-brand-200 text-brand-700">Tailwind</span>
-                </div>
-              </div>
-
-              <div class="pt-5 mt-5 border-t border-brand-100 flex items-center justify-between">
-                <button class="open-modal-btn text-xs font-bold text-brand-900 hover:text-black flex items-center gap-1.5" data-project-id="6">
-                  <span data-i18n="proj-details">تفاصيل المشروع</span>
-                  <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                </button>
-                <span class="text-xs text-brand-500 font-semibold flex items-center gap-1">
-                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
-                  <span data-i18n="status-case">دراسة حالة</span>
-                </span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
       </div>
     </section>
 
-    <!-- EXPERIENCE & TIMELINE SECTION -->
-    <section id="experience" class="py-24 px-6 border-t border-brand-100 bg-white">
-      <div class="max-w-4xl mx-auto">
-        
-        <div class="flex flex-col items-center text-center mb-16">
-          <span class="text-xs font-bold uppercase tracking-wider text-brand-400 mb-2" data-i18n="exp-badge">المسار والخبرات</span>
-          <h2 class="text-3xl sm:text-4xl font-black text-brand-950" data-i18n="exp-title">الرحلة المهنية والتعليم</h2>
-          <div class="w-12 h-1 bg-brand-950 mt-4 rounded-full"></div>
-        </div>
-
-        <div class="relative border-s-2 border-brand-200 ms-4 sm:ms-6 flex flex-col gap-10">
-          
-          <!-- Experience 1 -->
-          <div class="relative ps-8 sm:ps-10">
-            <div class="absolute -start-[9px] top-1.5 w-4 h-4 rounded-full bg-white border-4 border-brand-950"></div>
-            <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
-              <h3 class="font-bold text-lg text-brand-950" data-i18n="exp-1-title">كبير مطوري الواجهات (Senior Frontend Engineer)</h3>
-              <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-brand-100 text-brand-800">2024 - الحالي</span>
-            </div>
-            <div class="text-xs font-semibold text-brand-500 mb-3" data-i18n="exp-1-company">شركة الابتكار الرقمي المتقدمة | عن بُعد</div>
-            <p class="text-xs sm:text-sm text-brand-600 leading-relaxed" data-i18n="exp-1-desc">
-              قيادة فريق تطوير الواجهات الأمامية وبناء المنصات السحابية باستخدام Next.js 15 و TypeScript. تحسين سرعة تحميل التطبيقات بنسبة 45% وتطبيق نظام تصميم موحد لمنتجات الشركة.
-            </p>
+    <!-- ==========================================================================
+         DIRECT CONTACT HUB (قائمة تواصل مباشر فقط - بدون نماذج أو حقول أسماء)
+         ========================================================================== -->
+    <section class="direct-contact-section" id="direct-contact">
+      <div class="container">
+        <div class="contact-hero-card">
+          <div class="contact-hero-tag">
+            <i class="fas fa-bolt"></i>
+            <span>تواصل مباشر وفوري</span>
           </div>
 
-          <!-- Experience 2 -->
-          <div class="relative ps-8 sm:ps-10">
-            <div class="absolute -start-[9px] top-1.5 w-4 h-4 rounded-full bg-white border-4 border-brand-400"></div>
-            <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
-              <h3 class="font-bold text-lg text-brand-950" data-i18n="exp-2-title">مطور ويب متكامل (Full-Stack Developer)</h3>
-              <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-brand-50 text-brand-600 border border-brand-200">2022 - 2024</span>
-            </div>
-            <div class="text-xs font-semibold text-brand-500 mb-3" data-i18n="exp-2-company">وكالة سماء للحلول البرمجية | الرياض</div>
-            <p class="text-xs sm:text-sm text-brand-600 leading-relaxed" data-i18n="exp-2-desc">
-              بناء وإطلاق أكثر من 20 مشروعاً للعملاء شملت متاجر إلكترونية ولوحات إدارة ومنصات حجز. تصميم واجهات برمجة التطبيقات RESTful وربطها مع قواعد بيانات PostgreSQL.
-            </p>
-          </div>
-
-          <!-- Experience 3 -->
-          <div class="relative ps-8 sm:ps-10">
-            <div class="absolute -start-[9px] top-1.5 w-4 h-4 rounded-full bg-white border-4 border-brand-300"></div>
-            <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
-              <h3 class="font-bold text-lg text-brand-950" data-i18n="exp-3-title">مطور واجهات ومصمم تجربة مستخدم</h3>
-              <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-brand-50 text-brand-600 border border-brand-200">2020 - 2022</span>
-            </div>
-            <div class="text-xs font-semibold text-brand-500 mb-3" data-i18n="exp-3-company">العمل الحر (Freelance) | منصات عالمية</div>
-            <p class="text-xs sm:text-sm text-brand-600 leading-relaxed" data-i18n="exp-3-desc">
-              تنفيذ أعمال متميزة للعملاء في الخليج وأوروبا بتقييم 5 نجوم، والتركيز على الواجهات النظيفة وسريعة التفاعل.
-            </p>
-          </div>
-
-          <!-- Education -->
-          <div class="relative ps-8 sm:ps-10">
-            <div class="absolute -start-[9px] top-1.5 w-4 h-4 rounded-full bg-white border-4 border-brand-200"></div>
-            <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
-              <h3 class="font-bold text-lg text-brand-950" data-i18n="edu-title">بكالوريوس علوم الحاسب والمعلومات</h3>
-              <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-brand-50 text-brand-600 border border-brand-200">2016 - 2020</span>
-            </div>
-            <div class="text-xs font-semibold text-brand-500 mb-3" data-i18n="edu-univ">جامعة الملك سعود | مرتبة الشرف</div>
-            <p class="text-xs sm:text-sm text-brand-600 leading-relaxed" data-i18n="edu-desc">
-              تخصص في هندسة البرمجيات وأنظمة الويب الموزعة وهياكل البيانات المتقدمة.
-            </p>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- TESTIMONIALS SECTION -->
-    <section class="py-24 px-6 border-t border-brand-100 bg-brand-50/30">
-      <div class="max-w-6xl mx-auto">
-        
-        <div class="flex flex-col items-center text-center mb-16">
-          <span class="text-xs font-bold uppercase tracking-wider text-brand-400 mb-2" data-i18n="test-badge">شهادات الشركاء</span>
-          <h2 class="text-3xl sm:text-4xl font-black text-brand-950" data-i18n="test-title">ماذا يقول العملاء عني؟</h2>
-          <div class="w-12 h-1 bg-brand-950 mt-4 rounded-full"></div>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-6">
-          
-          <div class="p-6 rounded-2xl bg-white border border-brand-200 shadow-sm flex flex-col justify-between">
-            <div>
-              <div class="flex gap-1 text-amber-400 mb-4">
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-              </div>
-              <p class="text-xs sm:text-sm text-brand-700 leading-relaxed font-normal" data-i18n="test-1-quote">
-                "العمل مع أحمد كان نقلة نوعية لمنصتنا. الدقة في المواعيد، نقاء التصميم، والسرعة الفائقة في تنفيذ الأفكار فاقت توقعاتنا بكثير."
-              </p>
-            </div>
-            <div class="pt-6 mt-6 border-t border-brand-100 flex items-center gap-3">
-              <div class="w-9 h-9 rounded-full bg-brand-900 text-white flex items-center justify-center font-bold text-xs">
-                م.س
-              </div>
-              <div>
-                <h4 class="font-bold text-xs text-brand-900" data-i18n="test-1-author">م. سلطان الشمري</h4>
-                <p class="text-[11px] text-brand-400" data-i18n="test-1-pos">المؤسس والرئيس التنفيذي | تِك فلو</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="p-6 rounded-2xl bg-white border border-brand-200 shadow-sm flex flex-col justify-between">
-            <div>
-              <div class="flex gap-1 text-amber-400 mb-4">
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-              </div>
-              <p class="text-xs sm:text-sm text-brand-700 leading-relaxed font-normal" data-i18n="test-2-quote">
-                "الموقع خرج بتحفة فنية بيضاء مينيماليست مريحة جداً لعملائنا. معدل التحويل في متجرنا ارتفع بنسبة 35% بعد إعادة تصميمه."
-              </p>
-            </div>
-            <div class="pt-6 mt-6 border-t border-brand-100 flex items-center gap-3">
-              <div class="w-9 h-9 rounded-full bg-brand-900 text-white flex items-center justify-center font-bold text-xs">
-                ر.خ
-              </div>
-              <div>
-                <h4 class="font-bold text-xs text-brand-900" data-i18n="test-2-author">رغد الخالدي</h4>
-                <p class="text-[11px] text-brand-400" data-i18n="test-2-pos">مديرة التسويق الرقمي | لينورا</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="p-6 rounded-2xl bg-white border border-brand-200 shadow-sm flex flex-col justify-between">
-            <div>
-              <div class="flex gap-1 text-amber-400 mb-4">
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-              </div>
-              <p class="text-xs sm:text-sm text-brand-700 leading-relaxed font-normal" data-i18n="test-3-quote">
-                "مهندس محترف بكل ما تحمله الكلمة من معنى. الكود النظيف والملاحظات التفصيلية جعلت من السهل على فريقنا الداخلي متابعة العمل."
-              </p>
-            </div>
-            <div class="pt-6 mt-6 border-t border-brand-100 flex items-center gap-3">
-              <div class="w-9 h-9 rounded-full bg-brand-900 text-white flex items-center justify-center font-bold text-xs">
-                ف.ع
-              </div>
-              <div>
-                <h4 class="font-bold text-xs text-brand-900" data-i18n="test-3-author">فيصل عبد العزيز</h4>
-                <p class="text-[11px] text-brand-400" data-i18n="test-3-pos">مدير المنتج | أفق للاستثمار</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="py-24 px-6 border-t border-brand-100 bg-white">
-      <div class="max-w-5xl mx-auto">
-        
-        <div class="flex flex-col items-center text-center mb-16">
-          <span class="text-xs font-bold uppercase tracking-wider text-brand-400 mb-2" data-i18n="contact-badge">لنبدأ التعاون</span>
-          <h2 class="text-3xl sm:text-4xl font-black text-brand-950" data-i18n="contact-title">هل لديك فكرة أو مشروع جديد؟</h2>
-          <p class="text-brand-500 text-sm mt-3 max-w-md font-normal" data-i18n="contact-desc">
-            أنا متاح دائماً لمناقشة المشاريع الطموحة، الاستشارات التقنية، أو فرص العمل الحر المميزة.
+          <h2>جاهز لبدء مشروعك القادم؟</h2>
+          <p>
+            تواصل معي مباشرة وبسرعة عبر وسيلتك المفضلة بدون أي نماذج أو تعبئة بيانات. أنا متواجد للرد على استفساراتك ومناقشة تفاصيل العمل فوراً.
           </p>
-          <div class="w-12 h-1 bg-brand-950 mt-4 rounded-full"></div>
-        </div>
 
-        <div class="grid md:grid-cols-12 gap-10">
-          
-          <!-- Contact Info Cards -->
-          <div class="md:col-span-5 flex flex-col gap-4">
-            
-            <!-- Email Item -->
-            <div class="p-5 rounded-2xl border border-brand-200 bg-white hover:border-brand-400 transition-all flex items-start justify-between group">
-              <div class="flex items-start gap-3.5">
-                <div class="p-2.5 rounded-xl bg-brand-100 text-brand-900 mt-0.5">
-                  <i data-lucide="mail" class="w-5 h-5"></i>
-                </div>
-                <div>
-                  <span class="text-xs text-brand-400 font-medium" data-i18n="contact-email-lbl">البريد الإلكتروني</span>
-                  <div class="font-bold text-sm text-brand-950 font-mono mt-0.5 select-all">ahmed.dev@example.com</div>
-                </div>
-              </div>
-              <button id="copy-email-btn" class="p-2 rounded-lg text-brand-400 hover:text-brand-950 hover:bg-brand-100 transition-colors" title="نسخ البريد">
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
+          <!-- 3 Main Instant Direct Action Buttons -->
+          <div class="direct-actions-grid">
+            <!-- 1. WhatsApp Instant -->
+            <div class="direct-box-btn" onclick="openWhatsAppDirect()">
+              <div class="direct-box-icon"><i class="fab fa-whatsapp"></i></div>
+              <span class="direct-box-title">واتساب مباشر</span>
+              <span class="direct-box-value">+966 50 123 4567</span>
+              <span class="direct-badge-click">انقر للمحادثة الفورية <i class="fas fa-arrow-left"></i></span>
             </div>
 
-            <!-- WhatsApp Item -->
-            <a href="https://wa.me/966500000000" target="_blank" rel="noopener noreferrer" class="p-5 rounded-2xl border border-brand-200 bg-white hover:border-emerald-400 hover:shadow-sm transition-all flex items-center justify-between group">
-              <div class="flex items-center gap-3.5">
-                <div class="p-2.5 rounded-xl bg-emerald-50 text-emerald-600">
-                  <i data-lucide="phone-call" class="w-5 h-5"></i>
-                </div>
-                <div>
-                  <span class="text-xs text-brand-400 font-medium" data-i18n="contact-wa-lbl">محادثة واتساب مباشرة</span>
-                  <div class="font-bold text-sm text-brand-950 font-mono mt-0.5" dir="ltr">+966 50 000 0000</div>
-                </div>
-              </div>
-              <i data-lucide="arrow-up-left" class="w-4 h-4 text-brand-400 group-hover:text-emerald-600 transition-colors"></i>
+            <!-- 2. One-Click Copy Email -->
+            <div class="direct-box-btn" onclick="copyEmailToClipboard()">
+              <div class="direct-box-icon"><i class="fas fa-envelope"></i></div>
+              <span class="direct-box-title">البريد الإلكتروني</span>
+              <span class="direct-box-value">motion.creator@studio.com</span>
+              <span class="direct-badge-click">انقر لنسخ البريد فوراً <i class="fas fa-copy"></i></span>
+            </div>
+
+            <!-- 3. Phone Call Direct -->
+            <div class="direct-box-btn" onclick="makeDirectCall()">
+              <div class="direct-box-icon"><i class="fas fa-phone-alt"></i></div>
+              <span class="direct-box-title">اتصال هاتفي</span>
+              <span class="direct-box-value">+966 50 123 4567</span>
+              <span class="direct-badge-click">انقر لبدء المكالمة <i class="fas fa-phone"></i></span>
+            </div>
+          </div>
+
+          <!-- Secondary Direct Social & Portfolio Channels -->
+          <div class="social-direct-bar">
+            <a href="https://t.me/" target="_blank" rel="noopener" class="social-direct-pill">
+              <i class="fab fa-telegram-plane" style="color: var(--accent);"></i>
+              <span>تليجرام (Telegram)</span>
             </a>
-
-            <!-- Location Item -->
-            <div class="p-5 rounded-2xl border border-brand-200 bg-white flex items-center gap-3.5">
-              <div class="p-2.5 rounded-xl bg-brand-100 text-brand-900">
-                <i data-lucide="map-pin" class="w-5 h-5"></i>
-              </div>
-              <div>
-                <span class="text-xs text-brand-400 font-medium" data-i18n="contact-loc-lbl">الموقع الحالي</span>
-                <div class="font-bold text-sm text-brand-950 mt-0.5" data-i18n="contact-loc-val">الرياض، المملكة العربية السعودية (ومتاح عن بُعد)</div>
-              </div>
-            </div>
-
-            <!-- Social Links Pill -->
-            <div class="p-5 rounded-2xl border border-brand-200 bg-white flex items-center justify-around">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl hover:bg-brand-100 text-brand-600 hover:text-black transition-colors" title="GitHub">
-                <i data-lucide="github" class="w-5 h-5"></i>
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl hover:bg-brand-100 text-brand-600 hover:text-black transition-colors" title="LinkedIn">
-                <i data-lucide="linkedin" class="w-5 h-5"></i>
-              </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl hover:bg-brand-100 text-brand-600 hover:text-black transition-colors" title="Twitter / X">
-                <i data-lucide="twitter" class="w-5 h-5"></i>
-              </a>
-              <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl hover:bg-brand-100 text-brand-600 hover:text-black transition-colors" title="Dribbble">
-                <i data-lucide="dribbble" class="w-5 h-5"></i>
-              </a>
-            </div>
-
+            <a href="https://behance.net" target="_blank" rel="noopener" class="social-direct-pill">
+              <i class="fab fa-behance" style="color: var(--accent);"></i>
+              <span>بيهانس (Behance)</span>
+            </a>
+            <a href="https://vimeo.com" target="_blank" rel="noopener" class="social-direct-pill">
+              <i class="fab fa-vimeo-v" style="color: var(--accent);"></i>
+              <span>فيميو (Vimeo)</span>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener" class="social-direct-pill">
+              <i class="fab fa-youtube" style="color: var(--accent);"></i>
+              <span>يوتيوب (YouTube)</span>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="social-direct-pill">
+              <i class="fab fa-instagram" style="color: var(--accent);"></i>
+              <span>انستغرام (Instagram)</span>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-direct-pill">
+              <i class="fab fa-linkedin-in" style="color: var(--accent);"></i>
+              <span>لينكد إن (LinkedIn)</span>
+            </a>
           </div>
-
-          <!-- Contact Form -->
-          <div class="md:col-span-7">
-            <form id="contact-form" class="p-6 sm:p-8 rounded-2xl border border-brand-200 bg-white shadow-sm flex flex-col gap-5">
-              
-              <div class="grid sm:grid-cols-2 gap-5">
-                <div>
-                  <label class="block text-xs font-bold text-brand-800 mb-1.5" data-i18n="form-name">الاسم الكريم *</label>
-                  <input type="text" id="sender-name" required placeholder="محمد أحمد" class="w-full px-4 py-3 rounded-xl border border-brand-200 bg-brand-50/50 text-sm text-brand-900 focus:bg-white focus:border-brand-950 focus:ring-1 focus:ring-brand-950 outline-none transition-all" />
-                </div>
-                <div>
-                  <label class="block text-xs font-bold text-brand-800 mb-1.5" data-i18n="form-email">البريد الإلكتروني *</label>
-                  <input type="email" id="sender-email" required placeholder="name@domain.com" class="w-full px-4 py-3 rounded-xl border border-brand-200 bg-brand-50/50 text-sm text-brand-900 focus:bg-white focus:border-brand-950 focus:ring-1 focus:ring-brand-950 outline-none transition-all" />
-                </div>
-              </div>
-
-              <div>
-                <label class="block text-xs font-bold text-brand-800 mb-1.5" data-i18n="form-subject">نوع المشروع أو الاستفسار</label>
-                <select id="sender-subject" class="w-full px-4 py-3 rounded-xl border border-brand-200 bg-brand-50/50 text-sm text-brand-900 focus:bg-white focus:border-brand-950 focus:ring-1 focus:ring-brand-950 outline-none transition-all">
-                  <option value="web" data-i18n="opt-web">تطوير موقع ويب جديد</option>
-                  <option value="saas" data-i18n="opt-saas">بناء منصة سحابية SaaS</option>
-                  <option value="ui" data-i18n="opt-ui">تصميم واجهات وتجربة مستخدم UI/UX</option>
-                  <option value="consult" data-i18n="opt-consult">استشارة تقنية أو مراجعة كود</option>
-                  <option value="other" data-i18n="opt-other">أخرى</option>
-                </select>
-              </div>
-
-              <div>
-                <label class="block text-xs font-bold text-brand-800 mb-1.5" data-i18n="form-msg">تفاصيل الرسالة *</label>
-                <textarea id="sender-message" rows="4" required placeholder="اشرح فكرتك باختصار، الميزانية المتوقعة، أو الموعد النهائي..." class="w-full px-4 py-3 rounded-xl border border-brand-200 bg-brand-50/50 text-sm text-brand-900 focus:bg-white focus:border-brand-950 focus:ring-1 focus:ring-brand-950 outline-none transition-all resize-none"></textarea>
-              </div>
-
-              <button type="submit" id="submit-btn" class="w-full py-3.5 px-6 rounded-xl bg-brand-950 text-white font-bold text-sm hover:bg-brand-800 transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2">
-                <span data-i18n="form-submit">إرسال الرسالة الآن</span>
-                <i data-lucide="send" class="w-4 h-4"></i>
-              </button>
-
-              <div id="form-feedback" class="hidden text-xs text-center font-medium p-3 rounded-xl"></div>
-            </form>
-          </div>
-
         </div>
-
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="py-12 px-6 border-t border-brand-200 bg-white">
-    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-brand-500 font-medium">
-      
-      <div class="flex items-center gap-2">
-        <div class="w-6 h-6 rounded-lg bg-brand-950 text-white flex items-center justify-center font-bold text-xs">A</div>
-        <span>© <span id="year">2026</span> <span data-i18n="name">أحمد عبد الله</span>. جميع الحقوق محفوظة.</span>
-      </div>
-
-      <div class="flex items-center gap-6">
-        <span class="inline-flex items-center gap-1.5 text-brand-400">
-          <i data-lucide="feather" class="w-3.5 h-3.5"></i>
-          <span data-i18n="footer-style">تصميم أبيض مينيماليست حديث</span>
-        </span>
-        <button id="back-to-top" class="hover:text-brand-950 transition-colors flex items-center gap-1 font-bold" title="الرجوع للأعلى">
-          <span data-i18n="footer-top">للأعلى</span>
-          <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i>
+  <!-- Cinematic Video Modal -->
+  <div class="video-modal-backdrop" id="video-modal">
+    <div class="video-modal-container">
+      <div class="modal-header">
+        <span class="modal-title-text" id="modal-video-title">عرض العمل التفاعلي</span>
+        <button class="modal-close-btn" onclick="closeVideoModal()" title="إغلاق">
+          <i class="fas fa-times"></i>
         </button>
       </div>
 
-    </div>
-  </footer>
-
-  <!-- PROJECT DETAILS MODAL -->
-  <div id="project-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-2xl w-full border border-brand-200 shadow-2xl overflow-hidden transform transition-all duration-300 scale-95 opacity-0 modal-content">
-      
-      <!-- Modal Header -->
-      <div class="p-6 border-b border-brand-100 flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <div id="modal-icon-container" class="w-10 h-10 rounded-xl bg-brand-100 text-brand-900 flex items-center justify-center">
-            <i data-lucide="folder" class="w-5 h-5"></i>
-          </div>
-          <div>
-            <h3 id="modal-title" class="text-lg font-bold text-brand-950">عنوان المشروع</h3>
-            <span id="modal-category" class="text-xs text-brand-400 font-medium">الفئة</span>
-          </div>
+      <div class="modal-video-viewport" id="modal-viewport">
+        <!-- مشغل الفيديو الحقيقي (ملف MP4 محلي) -->
+        <video id="modal-real-video" controls playsinline style="display: none; width: 100%; height: 100%; object-fit: contain;"></video>
+        <!-- مشغل الفيديو الخارجي (YouTube أو Vimeo) -->
+        <iframe id="modal-iframe-video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display: none; width: 100%; height: 100%;"></iframe>
+        <!-- العرض الحركي التجريبي (عند عدم وجود فيديو بعد) -->
+        <canvas id="modal-canvas" class="modal-demo-canvas"></canvas>
+        <div class="modal-video-hud" id="modal-hud">
+          <div><i class="fas fa-play" style="color: var(--accent); margin-left: 6px;"></i> <span id="modal-video-format">4K UHD 60FPS</span></div>
+          <div><i class="fas fa-clock" style="color: var(--accent); margin-left: 6px;"></i> المدة: <span id="modal-video-time">00:45</span></div>
         </div>
-        <button id="close-modal-btn" class="p-2 rounded-xl text-brand-400 hover:text-brand-950 hover:bg-brand-100 transition-colors">
-          <i data-lucide="x" class="w-5 h-5"></i>
+      </div>
+
+      <div style="padding: 1.5rem; background: var(--bg-surface); display: flex; justify-content: space-between; align-items: center; flex-wrap: gap: 1rem;">
+        <span style="color: var(--text-muted); font-size: 0.95rem;">هل أعجبك هذا العمل وتريد تنفيذه لمشروعك؟</span>
+        <button class="btn-primary" style="padding: 0.6rem 1.4rem; font-size: 0.9rem;" onclick="closeVideoModal(); openWhatsAppDirect();">
+          <i class="fab fa-whatsapp"></i> طلب تنفيذ عبر واتساب
         </button>
       </div>
-
-      <!-- Modal Body -->
-      <div class="p-6 flex flex-col gap-5 max-h-[70vh] overflow-y-auto">
-        <div class="rounded-xl border border-brand-100 bg-brand-50 p-6 flex flex-col items-center justify-center text-center">
-          <div id="modal-preview-icon" class="w-16 h-16 rounded-2xl bg-white border border-brand-200 shadow-sm flex items-center justify-center text-brand-950 mb-3">
-            <i data-lucide="monitor" class="w-8 h-8"></i>
-          </div>
-          <span id="modal-live-link-text" class="text-xs font-mono text-brand-400">https://demo-preview.example.com</span>
-        </div>
-
-        <div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-400 mb-1" data-i18n="modal-desc-lbl">وصف المشروع</h4>
-          <p id="modal-description" class="text-sm text-brand-700 leading-relaxed">تفاصيل المشروع وشرح الفكرة والتحديات التي تم حلها.</p>
-        </div>
-
-        <div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-400 mb-2" data-i18n="modal-tech-lbl">التقنيات المستخدمة</h4>
-          <div id="modal-tags" class="flex flex-wrap gap-2"></div>
-        </div>
-
-        <div class="pt-2 border-t border-brand-100 flex flex-wrap gap-3">
-          <a id="modal-live-btn" href="#" target="_blank" class="flex-1 py-3 px-5 rounded-xl bg-brand-950 text-white font-bold text-xs hover:bg-brand-800 transition-all flex items-center justify-center gap-2">
-            <span data-i18n="modal-btn-live">معاينة حية للمشروع</span>
-            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-          </a>
-          <a id="modal-code-btn" href="#" target="_blank" class="py-3 px-5 rounded-xl border border-brand-200 bg-white text-brand-900 font-bold text-xs hover:bg-brand-50 transition-all flex items-center justify-center gap-2">
-            <span data-i18n="modal-btn-code">كود المصدر (GitHub)</span>
-            <i data-lucide="github" class="w-3.5 h-3.5"></i>
-          </a>
-        </div>
-      </div>
-
     </div>
   </div>
 
-  <!-- Main JavaScript File -->
+  <!-- Toast Notification Box -->
+  <div class="toast-box" id="toast-box">
+    <i class="fas fa-check-circle"></i>
+    <span id="toast-text">تم نسخ البريد الإلكتروني!</span>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-text">
+        استوديو الموشن والمونتاج الاحترافي © 2026 | مصمم موشن جرافيك ومحرر فيديو | صُنع بشغف سينمائي
+      </p>
+    </div>
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
