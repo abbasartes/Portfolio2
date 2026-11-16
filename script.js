@@ -69,7 +69,7 @@ function makeDirectCall() {
 const videoProjects = [
   {
     id: 1,
-    title: "إعلان ترويجي سينمائي - سيارة كهربائية فائقة",
+    title: "إعلان ترويجي موشن جرافيك -لمطبعة تجارية",
     category: "commercial",
     categoryName: "إعلانات وموشن 3D",
     videoUrl: "https://youtube.com/shorts/73x6XTc1I7E?si=UVE4JjMSAB1gPCCz", // 👈 استبدل هذا برابط الفيديو الخاص بك من يوتيوب
@@ -77,7 +77,7 @@ const videoProjects = [
     desc: "موشن جرافيك ثلاثي الأبعاد ومونتاج إيقاعي فائق السرعة مع تصميم صوتي احترافي وتصحيح ألوان درامي.",
     duration: "00:45",
     format: "4K UHD • 60 FPS",
-    tools: ["After Effects", "Cinema 4D", "Premiere Pro", "DaVinci"],
+    tools: ["After Effects", "Premiere Pro", "DaVinci"],
     icon: "fa-car-side"
   },
   {
@@ -85,7 +85,7 @@ const videoProjects = [
     title: "تحريك الهوية البصرية وشعار البنك الرقمي",
     category: "brand",
     categoryName: "تحريك هويات وتيبوغرافي",
-    videoUrl: "https://www.youtube.com/watch?v=eYq7WapuDLU", // 👈 استبدل برابط يوتيوب الخاص بك
+    videoUrl: "https://youtu.be/udb-HaFz-og", // 👈 استبدل برابط يوتيوب الخاص بك
     thumbnail: "",
     desc: "تصميم حركة أنيقة ومدروسة تعكس الثقة والسرعة لتطبيق التكنولوجيا المالية بنمط Minimalist عصري.",
     duration: "00:20",
@@ -116,7 +116,7 @@ const videoProjects = [
     desc: "تبسيط المفاهيم التقنية المعقدة إلى رسوم متحركة ممتعة وجذابة مع تعليق صوتي ومؤثرات صوتية محكمة.",
     duration: "01:30",
     format: "4K UHD • 30 FPS",
-    tools: ["After Effects", "Illustrator", "Blender"],
+    tools: ["After Effects", "Illustrator"],
     icon: "fa-cubes"
   },
   {
@@ -142,7 +142,7 @@ const videoProjects = [
     desc: "افتتاحية كينتيك تيبوغرافي حيوية مع تداخلات ثلاثية الأبعاد وصوتيات مخصصة تمنح البرنامج هوية فريدة.",
     duration: "00:25",
     format: "4K UHD • 60 FPS",
-    tools: ["After Effects", "Blender", "DaVinci"],
+    tools: ["After Effects", "DaVinci"],
     icon: "fa-play"
   }
 ];
