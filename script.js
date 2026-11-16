@@ -200,7 +200,6 @@ function renderWorks(filter = 'all') {
         <div class="work-thumbnail">
           <div class="work-preview-canvas" style="${bgStyle}">
             ${!thumbUrl ? `<i class="fas ${item.icon} work-thumb-icon"></i>` : ''}
-            <span class="work-badge-time">${item.duration}</span>
             <span class="work-badge-format">${item.format}</span>
           </div>
           <div class="work-hover-overlay">
