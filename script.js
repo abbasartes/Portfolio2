@@ -69,77 +69,77 @@ function makeDirectCall() {
 const videoProjects = [
   {
     id: 1,
-    title: "إعلان ترويجي موشن جرافيك -لمطبعة تجارية",
+    title: "مقدمة كيف اقراء الأدب  ",
     category: "commercial",
-    categoryName: "إعلانات وموشن 3D",
-    videoUrl: "https://youtube.com/shorts/73x6XTc1I7E?si=UVE4JjMSAB1gPCCz", // 👈 استبدل هذا برابط الفيديو الخاص بك من يوتيوب
+    categoryName: " مونتاج - موشن جرافيك",
+    videoUrl: "https://youtu.be/jfBzJv_xAF0", // 👈 استبدل هذا برابط الفيديو الخاص بك من يوتيوب
     thumbnail: "", // اختياري: يجلبه الموقع تلقائياً من يوتيوب، أو ضع مسار صورة مخصصة
-    desc: "موشن جرافيك ثلاثي الأبعاد ومونتاج إيقاعي فائق السرعة مع تصميم صوتي احترافي وتصحيح ألوان درامي.",
+    desc: "موشن جرافيك   ومونتاج  احترافي وتصحيح ألوان .",
     duration: "00:45",
     format: "4K UHD • 60 FPS",
-    tools: ["After Effects", "Premiere Pro", "DaVinci"],
+    tools: ["After Effects", "Premiere Pro", "DaVinci Resolve Studio"],
     icon: "fa-car-side"
   },
   {
     id: 2,
-    title: "تحريك الهوية البصرية وشعار البنك الرقمي",
+    title: "موش جرافيك",
     category: "brand",
-    categoryName: "تحريك هويات وتيبوغرافي",
-    videoUrl: "https://youtu.be/udb-HaFz-og", // 👈 استبدل برابط يوتيوب الخاص بك
+    categoryName: "موش جرافيك",
+    videoUrl: "https://youtu.be/IaCNuQ1ufGk", // 👈 استبدل برابط يوتيوب الخاص بك
     thumbnail: "",
-    desc: "تصميم حركة أنيقة ومدروسة تعكس الثقة والسرعة لتطبيق التكنولوجيا المالية بنمط Minimalist عصري.",
+    desc: "تصميم حركة أنيقة ومدروسة تعكس الثقة والسرعة التي يقدم بها المدرس  المادة.",
     duration: "00:20",
     format: "4K UHD • 60 FPS",
-    tools: ["After Effects", "Illustrator", "Audition"],
+    tools: ["After Effects", "Premiere Pro", "DaVinci Resolve Studio"],
     icon: "fa-fingerprint"
   },
   {
     id: 3,
-    title: "سلسلة فيديوهات ريلز وسوشيال ميديا للمؤثرين",
+    title: "اعلان ملزمة - موشن جرافيك",
     category: "reels",
-    categoryName: "مونتاج وسوشيال ميديا",
-    videoUrl: "https://www.youtube.com/watch?v=WhWc3b3KhnY", // 👈 استبدل برابط يوتيوب الخاص بك
+    categoryName: "مونتاج - سوشيال ميديا",
+    videoUrl: "https://youtube.com/shorts/T5YBqX5XOME", // 👈 استبدل برابط يوتيوب الخاص بك
     thumbnail: "",
-    desc: "مونتاج إيقاعي سريع (Retention Editing) مع مؤثرات بصرية وتيبوغرافي حركي لرفع معدل المشاهدات إلى +10 ملايين.",
+    desc: "اعلان اصدار ملزمة للاستاذ حيدر الوائلي .",
     duration: "00:58",
     format: "1080x1920 (9:16)",
-    tools: ["Premiere Pro", "After Effects", "Soundly"],
+    tools: ["Premiere Pro", "After Effects", "DaVinci Resolve Studio"],
     icon: "fa-bolt"
   },
   {
     id: 4,
-    title: "فيديو تعريفي توضيحي (Explainer Video) لمنصة سحابية",
+    title: "فيديو تعريفي توضيحي لمطبعة اسنبول برنت",
     category: "commercial",
-    categoryName: "إعلانات وموشن 3D",
-    videoUrl: "https://www.youtube.com/watch?v=R2fZk_f9Oig", // 👈 استبدل برابط يوتيوب الخاص بك
+    categoryName: "مونتاج - سوشيال ميديا",
+    videoUrl: "https://youtube.com/shorts/VLOcFjRDpxs", // 👈 استبدل برابط يوتيوب الخاص بك
     thumbnail: "",
-    desc: "تبسيط المفاهيم التقنية المعقدة إلى رسوم متحركة ممتعة وجذابة مع تعليق صوتي ومؤثرات صوتية محكمة.",
+    desc: "اعلان تعريفي عن ما تقدم مطبعة اسطنبول برنت.",
     duration: "01:30",
     format: "4K UHD • 30 FPS",
-    tools: ["After Effects", "Illustrator"],
-    icon: "fa-cubes"
+    tools: ["After Effects", "Illustrator" , "DaVinci Resolve Studio"],
+    icon: "Davinci"
   },
   {
     id: 5,
-    title: "تريلر وثائقي سينمائي وتصحيح ألوان HDR",
+    title: "فيديو تعريفي للاستاذ مادة العربي",
     category: "color",
-    categoryName: "تصحيح ألوان ومؤثرات",
-    videoUrl: "https://www.youtube.com/watch?v=mE-f55WJjM8", // 👈 استبدل برابط يوتيوب الخاص بك
+    categoryName: "مونتاج - سوشيال ميديا",
+    videoUrl: "https://youtube.com/shorts/n9Jcs-zMHK0", // 👈 استبدل برابط يوتيوب الخاص بك
     thumbnail: "",
-    desc: "مونتاج سردي درامي مع ضبط وتصحيح ألوان متقدم باستخدام DaVinci Resolve لإضفاء لمسة سينمائية عميقة.",
+    desc: "افتتاحية كورس مادة الاحياء لمنصة تعليم.",
     duration: "02:15",
     format: "4K DCI • 24 FPS",
-    tools: ["DaVinci Resolve Studio", "Premiere Pro"],
+    tools: ["After Effects", "Premiere Pro" , "DaVinci Resolve Studio"],
     icon: "fa-film"
   },
   {
     id: 6,
-    title: "تتر بداية ومقدمة حركية لبرنامج يوتيوب شهير",
+    title: " ومقدمة عن مادة الاحياء للصف السادس",
     category: "brand",
-    categoryName: "تحريك هويات وتيبوغرافي",
-    videoUrl: "https://www.youtube.com/watch?v=YE7VzlLtp-4", // 👈 استبدل برابط يوتيوب الخاص بك
+    categoryName: "مونتاج - سوشيال ميديا",
+    videoUrl: "https://youtube.com/shorts/ixvD0YXaIKI", // 👈 استبدل برابط يوتيوب الخاص بك
     thumbnail: "",
-    desc: "افتتاحية كينتيك تيبوغرافي حيوية مع تداخلات ثلاثية الأبعاد وصوتيات مخصصة تمنح البرنامج هوية فريدة.",
+    desc: "افتتاحية كورس مادة الاحياء لمنصة تعليم.",
     duration: "00:25",
     format: "4K UHD • 60 FPS",
     tools: ["After Effects", "DaVinci"],
@@ -200,7 +200,6 @@ function renderWorks(filter = 'all') {
         <div class="work-thumbnail">
           <div class="work-preview-canvas" style="${bgStyle}">
             ${!thumbUrl ? `<i class="fas ${item.icon} work-thumb-icon"></i>` : ''}
-            <span class="work-badge-format">${item.format}</span>
           </div>
           <div class="work-hover-overlay">
             <div class="overlay-play-icon">
